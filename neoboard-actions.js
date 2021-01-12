@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: Additional Neoboard Actions
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Adds buttons to each post that allows you to respond to the specific user, mail the specific user, view the specific user's auctions/trades/shop and refresh the thread.  Icons from https://www.flaticon.com/
 // @author       rawbeee - code borrowed/edited from sunbath (https://github.com/moonbathr/neopets/tree/main)
 // @match        http://www.neopets.com/*
@@ -58,14 +58,17 @@ function userActions() {
 <a href="/island/tradingpost.phtml?type=browse&criteria=owner&search_string=${user}"<div cursor:pointer;"><img src="https://www.flaticon.com/svg/static/icons/svg/876/876784.svg" style="height:15px; width:15px;"></div></a>
 <a href="/genie.phtml?type=find_user&auction_username=${user}"<div cursor:pointer;"><img src="https://www.flaticon.com/svg/static/icons/svg/783/783196.svg" style="height:15px; width:15px;"></div></a>
 <a href="/browseshop.phtml?owner=${user}"<div cursor:pointer;"><img src="https://www.flaticon.com/svg/static/icons/svg/1170/1170678.svg" style="height:15px; width:15px;"></div></a></span>`);
+/* Mail, Auction, Shop icons by Freepik (https://www.flaticon.com/authors/freepik) */
+/* Exchange icon by Becris (https://www.flaticon.com/authors/becris)*/
     });
 }
 
 function refreshThread() {
 $(`.reportButton-neoboards`).before(`
 <div class="rotateRefresh" onClick="location.reload();" style="position:absolute; bottom:20px; right:15px; cursor:pointer;">
-<img src="https://www.flaticon.com/svg/static/icons/svg/17/17686.svg" style="height:15px; width:15px;"></div>`);
+<img src="https://www.flaticon.com/svg/static/icons/svg/117/117115.svg" style="height:15px; width:15px;"></div>`);
 }
+/* Icon by Vectors Market (https://www.flaticon.com/authors/vectors-market)*/
 
 document.addEventListener('DOMContentLoaded', replyTo);
 document.addEventListener('DOMContentLoaded', userActions);
