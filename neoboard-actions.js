@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Adds buttons to each post that allows you to respond to the specific user, mail the specific user, view the specific user's auctions/trades/shop and refresh the thread.
-// @author       rawbeee - code borrowed/edited from sunbath (https://github.com/moonbathr/neopets/tree/main)
+// @author       rawbeee - code borrowed/edited from sunbathr (https://github.com/moonbathr/neopets/tree/main)
 // @match        http://www.neopets.com/*
 // @grant        none
 // @run-at       document-start
