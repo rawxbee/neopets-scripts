@@ -7,6 +7,7 @@ Adds a button to the buffer nav that creates a popup with links to dailies. Easi
 # neoboard-actions.js
 Adds buttons to each post that allows you to respond to the specific user, mail the specific user, view the specific user's auctions/trades/shop and refresh the thread. 
 Code borrowed/edited from sunbathr (https://github.com/moonbathr/neopets/tree/main)
+<img src="https://i.imgur.com/bkNKVfp.png">
 
 # np-bar.js
 Display shop till/bank/total alongside on-hand NP. 
