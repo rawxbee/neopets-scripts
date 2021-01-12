@@ -360,8 +360,8 @@ $(`<div class="togglePopup__2020 movePopup__2020 dailiespopup" id="dailies_pop" 
 </tr>
 <tr>
 <td><a href="/space/strangelever.phtml" title="Lever of Doom"><div class="dailies_bg_map leverofdoom" style="border: solid 1px black;"></div></a></td>
-<td><a href="/quests.phtml" title="Faerie Quests"><div class="dailies_bg_map custom1_fixed" style="border: solid 1px black;"></div></a></td>
-<td><a href="/pirates/foodclub.phtml" title="Food Club"><div class="dailies_bg_map custom2_fixed" style="border: solid 1px black;"></div></a></td>
+<td><a href="/" title="Custom"><div class="dailies_bg_map custom1_fixed" style="border: solid 1px black;"></div></a></td>
+<td><a href="/" title="Custom"><div class="dailies_bg_map custom2_fixed" style="border: solid 1px black;"></div></a></td>
 <td><a href="/" title="Custom"><div class="dailies_bg_map custom3_fixed" style="border: solid 1px black;"></div></a></td>
 <td><a href="/" title="Custom"><div class="dailies_bg_map custom4_fixed" style="border: solid 1px black;"></div></a></td>
 <td><a href="/" title="Custom"><div class="dailies_bg_map custom5_fixed" style="border: solid 1px black;"></div></a></td>
