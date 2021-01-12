@@ -5,10 +5,13 @@ Use: Download <a href="https://chrome.google.com/webstore/detail/tampermonkey/dh
 Adds a button to the buffer nav that creates a popup with links to dailies. Easily customizable.
 
 # neoboard-actions.js
-Adds buttons to each post that allows you to respond to the specific user, mail the specific user, view the specific user's auctions/trades/shop and refresh the thread. Code borrowed/edited from sunbathr (https://github.com/moonbathr/neopets/tree/main)
+Adds buttons to each post that allows you to respond to the specific user, mail the specific user, view the specific user's auctions/trades/shop and refresh the thread. 
+Code borrowed/edited from sunbathr (https://github.com/moonbathr/neopets/tree/main)
 
 # np-bar.js
-Display shop till/bank/total alongside on-hand NP. Code edited from EatWoolooAsMutton (https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code)
+Display shop till/bank/total alongside on-hand NP. 
+Code edited from EatWoolooAsMutton (https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code)
 
 # neoboard-big-pets.js
-Make the boards a little nicer with big pet images. Code edited from Harvey (https://github.com/Blathers/neopets-user-scripts/)
+Make the boards a little nicer with big pet images. 
+Code edited from Harvey (https://github.com/Blathers/neopets-user-scripts/)
