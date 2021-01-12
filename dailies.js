@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Neopets: Dailies
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Dailies popup window. Icon from https://www.flaticon.com/
+// @version      1.0
+// @description  Dailies
 // @author       rawbeee
 // @match        http://www.neopets.com/*
 // @grant        none
@@ -277,8 +277,8 @@ div.kikopop {
 }
 </style>`).appendTo("head");
 
-$(`.navsub-bookmark-icon__2020`).after(`<span class="dailiespopup_btn" id="dailiespopup_btn" style="cursor:pointer;"><img src="https://www.flaticon.com/svg/static/icons/svg/4003/4003667.svg" style="height:30px; width:30px;"></span>`);
-
+$(`.navsub-bookmark-icon__2020`).after(`<span class="dailiespopup_btn" id="dailiespopup_btn" style="cursor:pointer;"><img src="https://www.flaticon.com/svg/static/icons/svg/1355/1355876.svg?" style="height:30px; width:30px;"></span>`);
+/* Icon by Smashicons (https://www.flaticon.com/authors/smashicons)*/
 $(`<div class="togglePopup__2020 movePopup__2020 dailiespopup" id="dailies_pop" style="display:none;">
 		<div class="popup-header__2020">
 			<h3>Dailies</h3>
