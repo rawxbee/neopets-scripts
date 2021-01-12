@@ -15,3 +15,7 @@ Code edited from EatWoolooAsMutton (https://greasyfork.org/en/scripts/419395-neo
 # neoboard-big-pets.js
 Make the boards a little nicer with big pet images. 
 Code edited from Harvey (https://github.com/Blathers/neopets-user-scripts/)
+
+# highlight-followed-users.js
+Underlines topics made by followed users, highlights their replies
+Code edited from sunbathr (https://github.com/moonbathr/neopets/tree/main)
