@@ -2,7 +2,7 @@
 // @name         Neopets: Dailies
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Dailies
+// @description  Dailies popup window. Icon from https://www.flaticon.com/
 // @author       rawbeee
 // @match        http://www.neopets.com/*
 // @grant        none
