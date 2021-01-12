@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name         Neopets - NP Bar
+// @version      1.0
 // @namespace    http://tampermonkey.net/
 // @description  Display shop till/bank/total alongside on-hand NP
 // @author       rawbeee - edited from EatWoolooAsMutton (https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code)
