@@ -2,13 +2,12 @@
 // @name         Neopets: Additional Neoboard Actions
 // @namespace    http://tampermonkey.net/
 // @version      1.0
-// @description  Adds buttons to each post that allows you to respond to the specific user, mail the specific user, view the specific user's auctions/trades/shop and refresh the thread.
-// @author       rawbeee - code borrowed/edited from sunbathr (https://github.com/moonbathr/neopets/tree/main)
+// @description  Refresh button added to each post. Icons from https://www.flaticon.com/
+// @author       rawbeee - code borrowed/edited from sunbath (https://github.com/moonbathr/neopets/tree/main)
 // @match        http://www.neopets.com/*
 // @grant        none
 // @run-at       document-start
 // ==/UserScript==
-
 $(`<style type='text/css'>
 .reportButton-neoboards {
   border: 0px !important;
