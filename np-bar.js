@@ -45,6 +45,16 @@
             const tnum2 = parseFloat(tnum1);
             const bnum2 = parseFloat(bnum1);
             const total = bnum2 + unum2 + tnum2
+            //const goal = parseInt(total/(#/100), 10)
+
+            // Replace the #### above with your goal (ie 25000000) and uncomment the line
+
+            // If you are using the goal option, copy and paste this HTML immediately after the last </a> in the below HTML
+
+            /* <div class="navsub-np-meter__2020">
+		<div class="navsub-np-icon__2020" style="background: url() center center no-repeat;"><img src="YOUR_IMAGE_HERE" style="height: 25px; width: 23px; margin: auto 4px auto 0; vertical-align: middle;"></div><span id="npanchor" class="np-text__2020">
+                        ${goal}%</span></div> */
+
         $(`a div.navsub-np-meter__2020`).append(` <a href="/market.phtml?type=till"><div class="navsub-np-meter__2020">
 		<div class="navsub-np-icon__2020" style="background: url() center center no-repeat;"><img src="http://images.neopets.com/premium/portal/images/shoptill-icon.png" style="height: 25px; width: 23px; margin: auto 4px auto 0; vertical-align: middle;"></div><span id="snpanchor" class="np-text__2020">
                         ${till}</span></div></a>
