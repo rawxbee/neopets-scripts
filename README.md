@@ -27,7 +27,9 @@ Display shop till/bank/total alongside on-hand NP.
 
 Code edited from EatWoolooAsMutton (https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code)
 
-<img src="https://i.imgur.com/cm9pqK9.png">
+<img src="https://i.imgur.com/N4MEF0J.png">
+
+(yes I'm poor what about it 💁‍♂️)
 
 # neoboard-big-pets.js
 Make the boards a little nicer with big pet images. 
