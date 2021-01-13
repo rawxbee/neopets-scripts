@@ -352,7 +352,7 @@ $(`<div class="togglePopup__2020 movePopup__2020 dailiespopup" id="dailies_pop" 
 <td><a href="/shenkuu/neggcave.phtml" title="Mysterious Negg"><div class="dailies_bg_map mysteriousnegg" style="border: solid 1px black;"></div></a></td>
 <td><a href="/space/coincidence.phtml" title="The Coincidence"><div class="dailies_bg_map coincidence" style="border: solid 1px black;"></div></a></td>
 <td><a href="/winter/adventcalendar.phtml" title="Advent Calendar"><div class="dailies_bg_map adventcalendar" style="border: solid 1px black;"></div></a></td>
-<td><a href="/winter/kiosk.phtml" title="Advent Calendar"><div class="dailies_bg_map tmscratchcardkiosk" style="border: solid 1px black;"></div></a></td>
+<td><a href="/winter/kiosk.phtml" title="Ice Caves Scratchcards"><div class="dailies_bg_map tmscratchcardkiosk" style="border: solid 1px black;"></div></a></td>
 <td><a href="/winter/snowfaerie.phtml" title="Snow Faerie Quests"><div class="dailies_bg_map thesnowfaeriesquests" style="border: solid 1px black;"></div></a></td>
 <td><a href="/winter/snowager.phtml" title="The Snowager"><div class="dailies_bg_map thesnowager" style="border: solid 1px black;"></div></a></td>
 <td><a href="/prehistoric/omelette.phtml" title="Giant Omelette"><div class="dailies_bg_map giantomlette" style="border: solid 1px black;"></div></a></td>
