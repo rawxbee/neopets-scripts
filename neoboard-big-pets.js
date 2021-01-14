@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: Neoboard Big Pets
 // @version      1.0
-// @description  Make the boards a little nicer with big pet images!
+// @description  Makes all pets on the neoboards larger and of higher quality, rearrannges user info/avatar and tries to better align the contents of the post for the larger white space
 // @author       rawbeee - edited from Harvey (https://github.com/Blathers/neopets-user-scripts/)
 // @match        http://www.neopets.com/*
 // @grant        none
