@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Dailies
-// @author       rawbeee
+// @author       rawbeee - including edits from sunbathr
 // @match        http://www.neopets.com/*
 // @grant        none
 // ==/UserScript==
