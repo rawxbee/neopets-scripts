@@ -14,7 +14,7 @@ Adds buttons to each post that allows you to respond to the specific user, mail 
 <img src="https://i.imgur.com/l8tZf34.png">
 
 # highlight-followed-users.js
-*This is an edit of the follow_users.js script made by sunbathr. The original can be found at https://github.com/moonbathr/neopets/tree/main if you would prefer to use to the original*
+*This is an edit of the follow_users.js script made by sunbathr. The original can be found at https://github.com/moonbathr/neopets/tree/main if you would prefer to use the original*
 
 Underlines topics made by followed users, highlights their replies
 
@@ -23,7 +23,7 @@ Underlines topics made by followed users, highlights their replies
 <img src="https://i.imgur.com/YfJZycn.png">
 
 # np-bar.js
-*This is an edit of the Neopets - Premium Toolbar (Beta) script made by EatWoolooAsMutton. The original can be found at https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code if you would prefer to use to the original*
+*This is an edit of the Neopets - Premium Toolbar (Beta) script made by EatWoolooAsMutton. The original can be found at https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code if you would prefer to use the original*
 
 Display shop till/bank/total alongside on-hand NP. 
 
