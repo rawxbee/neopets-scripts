@@ -9,7 +9,7 @@ Adds a button to the buffer nav that creates a popup with links to dailies. Easi
 # neoboard-actions.js
 *This script includes edits of code made by sunbathr (https://github.com/moonbathr/neopets/tree/main)*
 
-Adds buttons to each post that allows you to respond to the specific user, mail the specific user, view the specific user's auctions/trades/shop and refresh the thread. 
+Adds buttons to each post that allows you to respond to the specific user, mail the specific user, view the specific user's auctions/trades/shop and refresh the thread. The script will also remember the last pen you used and auto-select it for you.
 
 <img src="https://i.imgur.com/l8tZf34.png">
 
