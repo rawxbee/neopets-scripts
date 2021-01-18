@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: Highlight Followed Users
 // @description  Underlines topics made by followed users, highlights their replies
-// @version      1.0
+// @version      1.1
 // @author       rawbeee - code edited from sunbathr (https://github.com/moonbathr/neopets/tree/main)
 // @match        http://www.neopets.com/neoboards/*
 // @require      http://code.jquery.com/jquery-latest.js
@@ -22,6 +22,12 @@ div.postPetInfo {
 }
 div.postPet {
   margin: 0 0 10 0;
+}
+.follow {
+transition-duration: 0.2s;
+}
+.follow:hover {
+transform: translateY(-2px);
 }
 </style>`).appendTo("head");
 
