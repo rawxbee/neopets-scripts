@@ -13,15 +13,6 @@ Adds buttons to each post that allows you to respond to the specific user, mail 
 
 <img src="https://i.imgur.com/l8tZf34.png">
 
-# highlight-followed-users.js
-*This is an edit of the follow_users.js script made by sunbathr. The original can be found at https://github.com/moonbathr/neopets/tree/main if you would prefer to use it*
-
-Underlines topics made by followed users, highlights their replies
-
-<img src="https://i.imgur.com/CcEyyog.png">
-
-<img src="https://i.imgur.com/YfJZycn.png">
-
 # extra-neoboard-smilies.js
 Adds the entire library of smilies to the neoboards. Hover over one of the six smilies at the top to access each category.
 
@@ -44,4 +35,10 @@ Display shop till/bank/total alongside on-hand NP.
 Makes all pets on the neoboards larger and of higher quality, rearrannges user info/avatar and tries to better align the contents of the post for the larger white space. 
 
 <img src="https://i.imgur.com/Tkp64rj.png">
+
+# Recommended Scripts
+
+https://github.com/moonbathr/neopets/tree/main
+
+https://github.com/neopets-fixes/neopets_code
 
