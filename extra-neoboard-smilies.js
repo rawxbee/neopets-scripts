@@ -134,7 +134,7 @@ padding: 1px;
 </style>`).appendTo("head");
 
 function smile() {
-   $(`#boardTopic`).append(`<div class="justabuffer" style="height:60px;"></div>`);
+   $(`#boardTopic`).append(`<div class="justabuffer"></div>`);
    $(`.replySmilies-neoboards`).append(`<a href="#" class="smiley" onclick="insertSmiley(&quot;*yarr*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/yarr.gif" alt="" border="0"></a>
 <a href="#" class="smiley" onclick="insertSmiley(&quot;:*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/kisskiss.gif" alt="" border="0"></a>
 <a href="#" class="smiley" onclick="insertSmiley(&quot;*angry*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/angry.gif" alt="" border="0"></a>
