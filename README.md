@@ -14,7 +14,7 @@ Adds buttons to each post that allows you to respond to the specific user, mail 
 <img src="https://i.imgur.com/l8tZf34.png">
 
 # highlight-followed-users.js
-*This is an edit of the follow_users.js script made by sunbathr. The original can be found at https://github.com/moonbathr/neopets/tree/main if you would prefer to use the original*
+*This is an edit of the follow_users.js script made by sunbathr. The original can be found at https://github.com/moonbathr/neopets/tree/main if you would prefer to use the it*
 
 Underlines topics made by followed users, highlights their replies
 
@@ -30,7 +30,7 @@ Adds the entire library of smilies to the neoboards. Hover over one of the six s
 <img src="https://i.imgur.com/BCimkff.png">
 
 # np-bar.js
-*This is an edit of the Neopets - Premium Toolbar (Beta) script made by EatWoolooAsMutton. The original can be found at https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code if you would prefer to use the original*
+*This is an edit of the Neopets - Premium Toolbar (Beta) script made by EatWoolooAsMutton. The original can be found at https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code if you would prefer to use the it*
 
 Display shop till/bank/total alongside on-hand NP. 
 
@@ -39,7 +39,7 @@ Display shop till/bank/total alongside on-hand NP.
 (yes I'm poor what about it 💁‍♂️)
 
 # neoboard-big-pets.js
-*This is an edit of the BigPet.user.js script made by Harvey. The original can be found at https://github.com/Blathers/neopets-user-scripts if you would prefer to use to the original*
+*This is an edit of the BigPet.user.js script made by Harvey. The original can be found at https://github.com/Blathers/neopets-user-scripts if you would prefer to use to the it*
 
 Makes all pets on the neoboards larger and of higher quality, rearrannges user info/avatar and tries to better align the contents of the post for the larger white space. 
 
