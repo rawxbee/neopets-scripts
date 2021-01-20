@@ -4,7 +4,7 @@
 // @version      1.0
 // @description  Adds the entire smilie library to smilie section of the neoboards.
 // @author       rawbeee
-// @match        http://www.neopets.com/neoboards/*
+// @match        http://www.neopets.com/neoboards/topic*
 // @run-at       document-start
 // ==/UserScript==
 $(`<style type='text/css'>
