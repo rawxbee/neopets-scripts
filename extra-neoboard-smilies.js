@@ -1,152 +1,72 @@
 // ==UserScript==
 // @name         Neopets: Extra Smilies
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Adds the entire smilie library to smilie section of the neoboards.
-// @author       rawbeee
-// @match        http://www.neopets.com/neoboards/topic*
+// @author       rawbeee w/ edits by sunbathr
+// @match        http://www.neopets.com/neoboards/*
 // @run-at       document-start
 // ==/UserScript==
 $(`<style type='text/css'>
-.subnavc {
+.subnavc, .subnavp, .subnavp2p3, .subnavi, .subnavh, .subnavm, .subnavd {
   float: left;
   overflow: hidden;
   padding: 1px;
+}
+.subnav-c, .subnav-p, .subnav-p2p3, .subnav-i, .subnav-h, .subnav-m, .subnav-d {
+  display: none;
+  position: absolute;
+  background-color: white;
+  overflow: auto;
+  z-index: 1;
+  border-radius: 15px;
+  border: 1px solid #cacaca;
+  background-color: white;
+  padding: 2px;
+}
+.subnavc:hover .subnav-c, .subnavp:hover .subnav-p, .subnavp2p3:hover .subnav-p2p3, .subnavi:hover .subnav-i, .subnavh:hover .subnav-h, .subnavm:hover .subnav-m, .subnavd:hover .subnav-d{
+  display: block;
 }
 .subnav-c {
-  display: none;
-  position: absolute;
-  left: 65px;
-  background-color: white;
+  left: 45px;
   width: 322px;
-  z-index: 1;
-  border-radius: 15px;
-  border: 1px solid #cacaca;
-  background-color: white;
-  padding: 2px;
-}
-.subnavc:hover .subnav-c {
-  display: block;
-}
-.subnavp {
-  float: left;
-  overflow: hidden;
-padding: 1px;
 }
 .subnav-p {
-  display: none;
-  position: absolute;
-  left: 110px;
-  background-color: white;
+  left: 90px;
   width: 275px;
-  z-index: 1;
-  border-radius: 15px;
-  border: 1px solid #cacaca;
-  background-color: white;
-  padding: 2px;
-}
-.subnavp:hover .subnav-p {
-  display: block;
-}
-.subnavp2p3 {
-  float: left;
-  overflow: hidden;
-  padding: 1px;
 }
 .subnav-p2p3 {
-  display: none;
-  position: absolute;
-  left: 120px;
-  background-color: white;
+  left: 100px;
   width: 305px;
-  z-index: 1;
-  border-radius: 15px;
-  border: 1px solid #cacaca;
-  background-color: white;
-  padding: 2px;
-}
-.subnavp2p3:hover .subnav-p2p3 {
-  display: block;
-}
-.subnavi {
-  float: left;
-  overflow: hidden;
-  padding: 1px;
 }
 .subnav-i {
-  display: none;
-  position: absolute;
-  left: 150px;
-  background-color: white;
+  left: 130px;
   width: 280px;
-  z-index: 1;
-  border-radius: 15px;
-  border: 1px solid #cacaca;
-  background-color: white;
-  padding: 2px;
-}
-.subnavi:hover .subnav-i {
-  display: block;
-}
-.subnavh {
-  float: left;
-  overflow: hidden;
-  padding: 1px;
 }
 .subnav-h {
-  display: none;
-  position: absolute;
-  left: 170px;
-  background-color: white;
+  left: 150px;
   width: 280px;
-  z-index: 1;
-  border-radius: 15px;
-  border: 1px solid #cacaca;
-  background-color: white;
-  padding: 2px;
-}
-.subnavh:hover .subnav-h {
-  display: block;
-}
-.subnavm {
-  float: left;
-  overflow: hidden;
-  padding: 1px;
 }
 .subnav-m {
-  display: none;
-  position: absolute;
-  left: 180px;
-  background-color: white;
+  left: 160px;
   width: 310px;
-  z-index: 1;
-  border-radius: 15px;
-  border: 1px solid #cacaca;
-  background-color: white;
-  padding: 2px;
 }
-.subnavm:hover .subnav-m {
-  display: block;
+.subnav-d {
+  left: 185px;
+  width: 280px;
+}
+.subnav-c::-webkit-scrollbar, .subnav-m::-webkit-scrollbar, .subnav-h::-webkit-scrollbar, .subnav-i::-webkit-scrollbar, .subnav-p2p3::-webkit-scrollbar, .subnav-p::-webkit-scrollbar, .subnav-d::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
 }
 .replySmilies-neoboards {
   text-align: center;
+  width: 200px;
 }
 </style>`).appendTo("head");
 
 function smile() {
-   $(`.replySmilies-neoboards`).append(`<a href="#" class="smiley" onclick="insertSmiley(&quot;*yarr*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/yarr.gif" alt="" border="0"></a>
-<a href="#" class="smiley" onclick="insertSmiley(&quot;:*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/kisskiss.gif" alt="" border="0"></a>
-<a href="#" class="smiley" onclick="insertSmiley(&quot;*angry*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/angry.gif" alt="" border="0"></a>
-<a href="#" class="smiley" onclick="insertSmiley(&quot;*complain*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/complain.gif" alt="" border="0"></a>
-<a href="#" class="smiley" onclick="insertSmiley(&quot;*facepalm*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/facepalm.gif" alt="" border="0"></a>
-<a href="#" class="smiley" onclick="insertSmiley(&quot;*cough*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/cough.gif" alt="" border="0"></a>
-<a href="#" class="smiley" onclick="insertSmiley(&quot;*lol*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/lol.gif" alt="" border="0"></a>
-<a href="#" class="smiley" onclick="insertSmiley(&quot;*unsure*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/unsure.gif" alt="" border="0"></a>
-<a href="#" class="smiley" onclick="insertSmiley(&quot;*cry*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/cry.gif" alt="" border="0"></a>
-<a href="#" class="smiley" onclick="insertSmiley(&quot;*clap*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/clap.gif" alt="" border="0"></a>
-<a href="#" class="smiley" onclick="insertSmiley(&quot;*violin*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/violin.gif" alt="" border="0"></a>`);
-
-$(`.replySmilies-neoboards`).prepend(`<div class="extraextrasmilies" style="text-align: center; margin-left:10px;">
+$(`div.container.theme-bg`).append(`<div class="buffbuffer" style="height: 110px;"></div>`);
+$(`.replySmilies-neoboards`).html(`<div class="extraextrasmilies" style="text-align: center; margin-left:10px;">
 <div class="subnavc">
     <img src="http://images.neopets.com/neoboards/smilies/mrcoconut.gif">
     <div class="subnav-c"><center>
@@ -524,6 +444,42 @@ $(`.replySmilies-neoboards`).prepend(`<div class="extraextrasmilies" style="text
       <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*tea*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/tea.gif" alt="" border="0"></a></td>
       <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*tophat*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/tophat.gif" alt="" border="0"></a></td>
       <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*yarn*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/yarn.gif" alt="" border="0"></a></td>
+</tr>
+</center>
+</table>
+
+    </div>
+  </div>
+
+<div class="subnavd">
+    <img src="http://images.neopets.com/neoboards/smilies/smiley.gif" style="padding-top: 3px; padding-bottom: 3px;" alt="" border="0">
+    <div class="subnav-d"><center>
+<table style="width:100%; text-align: center;">
+<tr>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;:)&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/smiley.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;0:-)&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/angel.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;:o&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/oh.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;:(&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/sad.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;:D&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/grin.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;B)&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/sunglasses.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;:P&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/tongue.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;:K&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/vampire.gif" alt="" border="0"></a></td>
+</tr>
+<tr>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;;)&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/winking.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*yarr*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/yarr.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;:*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/kisskiss.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*angry*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/angry.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*complain*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/complain.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*facepalm*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/facepalm.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*cough*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/cough.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*lol*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/lol.gif" alt="" border="0"></a></td>
+</tr>
+<tr>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*unsure*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/unsure.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*cry*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/cry.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*clap*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/clap.gif" alt="" border="0"></a></td>
+      <td><a href="#" class="smiley" onclick="insertSmiley(&quot;*violin*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/violin.gif" alt="" border="0"></a></td>
 </tr>
 </center>
 </table>
