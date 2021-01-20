@@ -22,6 +22,11 @@ Underlines topics made by followed users, highlights their replies
 
 <img src="https://i.imgur.com/YfJZycn.png">
 
+# extra-neoboard-smilies.js
+Adds the entire library of smilies to the neoboards. Hover over one of the six smilies at the top to access each category.
+
+<img src="https://i.imgur.com/roIakGb.png"><img src="https://i.imgur.com/BCimkff.png">
+
 # np-bar.js
 *This is an edit of the Neopets - Premium Toolbar (Beta) script made by EatWoolooAsMutton. The original can be found at https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code if you would prefer to use the original*
 
