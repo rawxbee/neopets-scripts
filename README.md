@@ -39,7 +39,7 @@ Display shop till/bank/total alongside on-hand NP.
 (yes I'm poor what about it 💁‍♂️)
 
 # neoboard-big-pets.js
-*This is an edit of the BigPet.user.js script made by Harvey. The original can be found at https://github.com/Blathers/neopets-user-scripts if you would prefer to use to it*
+*This is an edit of the BigPet.user.js script made by Harvey. The original can be found at https://github.com/Blathers/neopets-user-scripts if you would prefer to use it*
 
 Makes all pets on the neoboards larger and of higher quality, rearrannges user info/avatar and tries to better align the contents of the post for the larger white space. 
 
