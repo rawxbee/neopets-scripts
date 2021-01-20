@@ -147,7 +147,7 @@ function smile() {
 <a href="#" class="smiley" onclick="insertSmiley(&quot;*clap*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/clap.gif" alt="" border="0"></a>
 <a href="#" class="smiley" onclick="insertSmiley(&quot;*violin*&quot;); return false;"><img src="http://images.neopets.com/neoboards/smilies/violin.gif" alt="" border="0"></a>`);
 
-$(`.replySmilies-neoboards`).prepend(`<div class="extraextrasmilies" style="text-align: center; margin-left:4px;">
+$(`.replySmilies-neoboards`).prepend(`<div class="extraextrasmilies" style="text-align: center; margin-left:10px;">
 <div class="subnavc">
     <img src="http://images.neopets.com/neoboards/smilies/mrcoconut.gif">
     <div class="subnav-c"><center>
