@@ -16,6 +16,15 @@ Adds buttons to each post that allows you to respond to the specific user, mail 
 # extra-neoboard-smilies.js
 Adds the entire library of smilies to the neoboards. Hover over one of the six smilies at the top to access each category.
 
+Jiggle fix: add this line of code to your choice of css altering extension
+
+`
+.topicReplyIcons {
+  margin-left: 40px;
+}
+`
+
+
 <img src="https://i.imgur.com/roIakGb.png">
 
 <img src="https://i.imgur.com/BCimkff.png">
