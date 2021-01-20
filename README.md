@@ -24,9 +24,6 @@ Jiggle fix: add this line of code to your choice of css altering extension
 }
 `
 
-
-<img src="https://i.imgur.com/roIakGb.png">
-
 <img src="https://i.imgur.com/BCimkff.png">
 
 # np-bar.js
