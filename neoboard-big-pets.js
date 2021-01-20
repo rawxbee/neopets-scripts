@@ -3,7 +3,7 @@
 // @version      1.0
 // @description  Makes all pets on the neoboards larger and of higher quality, rearrannges user info/avatar and tries to better align the contents of the post for the larger white space
 // @author       rawbeee - edited from Harvey (https://github.com/Blathers/neopets-user-scripts/)
-// @match        http://www.neopets.com/*
+// @match        http://www.neopets.com/neoboards/topic*
 // @grant        none
 // ==/UserScript==
 
