@@ -1,6 +1,5 @@
 # neopets-scripts
-Use: Download <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">tampermonkey</a>. Create new script and copy the contents of your chosen script from here into the window, save.
-
+Use: Download <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">tampermonkey</a>. Open the script file of your choice and clikc the raw tab, install.
 # dailies.user.js
 Adds a button to the buffer nav that creates a popup with links to dailies. Easily customizable.
 
