@@ -1,18 +1,40 @@
 # neopets-scripts
+
 Use: Download <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">tampermonkey</a>. Open the script file of your choice and clikc the raw tab, install.
+
 # dailies.user.js
+*by rawbeee and sunbathr*
+
 Adds a button to the buffer nav that creates a popup with links to dailies. Easily customizable.
 
 <img src="https://i.imgur.com/vcK62Th.png">
 
 # neoboard-actions.user.js
-*This script includes edits of code made by sunbathr (https://github.com/moonbathr/neopets/tree/main)*
+*by rawbeee and sunbathr*
 
 Adds buttons to each post that allows you to respond to the specific user, mail the specific user, view the specific user's auctions/trades/shop and refresh the thread. The script will also remember the last pen you used and auto-select it for you.
 
 <img src="https://i.imgur.com/l8tZf34.png">
 
+# neoboard-follow-users.js
+*by sunbathr and rawbeee*
+
+Underlines topics made by followed users, highlights their replies.
+
+<img src="https://i.imgur.com/CcEyyog.png">
+
+<img src="https://i.imgur.com/YfJZycn.png">
+
+# neoboard-bookmarks.user.js
+*by sunbathr and rawbeee*
+
+Adds a bookmark button to threads, bookmarked threads are added to a collapsible menu above the neoboards.
+
+<img src="https://i.imgur.com/Dtzfdyl.png">
+
 # extra-neoboard-smilies.user.js
+*by rawbeee and sunbathr*
+
 Adds the entire library of smilies to the neoboards. Hover over one of the six smilies at the top to access each category.
 
 <img src="https://i.imgur.com/BCimkff.png">
