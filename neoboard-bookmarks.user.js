@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Neopets: Neoboard Bookmarks
-// @version      1.3.1
+// @version      1.4.0
 // @author       sunbathr & rawbeee
 // @description  Bookmarks for threads and boards
 // @match        http://www.neopets.com/neoboards/*
@@ -13,11 +13,15 @@
 $(`<style type='text/css'>
 #bookmarked_boards td {
   border: 1px solid #efefef;
-  padding: 10px;
+  padding: 5px;
   font-family: "MuseoSansRounded500", 'Arial', sans-serif;
   valign : middle;
+align: middle;
   font-size: 11px;
-  width: 150px;
+  width: 50px;
+}
+#bookmarked_boards td img {
+  width: 50px;
 }
 #bookmarked_boards td a:link, #bookmarked_boards td a:visited {
   text-decoration: none;
@@ -26,17 +30,13 @@ $(`<style type='text/css'>
   font-size: 15px;
   line-height: 25px;
 }
-#bookmarked_boards td img {
-  float: left;
-  margin-right: 10px;
-}
 #bookmarked_threads td {
   border: 1px solid #efefef;
   padding: 10px;
   font-family: "MuseoSansRounded500", 'Arial', sans-serif;
   valign : middle;
   font-size: 11px;
-  width: 150px;
+  width: 780px;
   text-align: center;
 }
 #bookmarked_threads td a:link, #bookmarked_threads td a:visited {
@@ -96,8 +96,26 @@ $(`<style type='text/css'>
   float: right;
   position: absolute;
   margin-left: -30;
-  margin-top: 5;
+  margin-top: 4;
 }
+.boardfollow {
+  color: white;
+  cursor: pointer;
+  padding: 0px;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "MuseoSansRounded500", 'Arial', sans-serif;
+  border-radius: 3px;
+  width: 80px;
+  height: 20px;
+  float: right;
+  padding-bottom: 10px;
+  margin-top: 3px;
+}
+
 .active:hover, .collapsible_bookmarks:hover {
   background-color: #6e9992;
 }
@@ -111,11 +129,12 @@ $(`<style type='text/css'>
   font-size: 10px;
 }
 tr button p {
-  margin-top: 5;
+  margin-top: 6;
 }
 </style>`).appendTo("head");
 
 var followedThreads = GM_SuperValue.get("BookmarkedThreadsNeopets", []);
+var followedBoards = GM_SuperValue.get("BookmarkedBoardsNeopets", []);
 
 function displayBookmarks() {
     var bookmarked_thread_html = ``;
@@ -126,29 +145,20 @@ function displayBookmarks() {
                         </td>
                     </tr>`;
     bookmarked_thread_html += populate;
+    });
+    var bookmarked_board_html = ``;
+    followedBoards.forEach(function(entree) {
+    var popul8 = `${entree}`;
+    bookmarked_board_html += popul8;
 });
   var recently_viewed_section = `
                 <center><div class="bookmarkedbt" style="margin: 10px;">
                 <table>
-<tr id="bookmarked_boards">
-                <td><a href="boardlist.phtml?board=21"><img src="http://images.neopets.com/neoboards/boardIcons/avatars.png"> Avatar Chat</a> <br>` +
-                $( "#boardIndex li:eq(30) .recent" ).text()
-                 + `</td>
-                <td><a href="boardlist.phtml?board=7"><img src="http://images.neopets.com/neoboards/boardIcons/ac7.png"> Site Events</a> <br>` +
-                $( "#boardIndex li:eq(2) .recent" ).text()
-                 + `</td>
-                <td><a href="boardlist.phtml?board=34"><img src="http://images.neopets.com/neoboards/boardIcons/neopound.png"> Pound Chat</a> <br>` +
-                $( "#boardIndex li:eq(15) .recent" ).text()
-                 + `</td>
-                <td><a href="boardlist.phtml?board=10"><img src="http://images.neopets.com/neoboards/boardIcons/battle.png"> BD Chat</a> <br>` +
-                $( "#boardIndex li:eq(11) .recent" ).text()
-                 + `</td>
-                <td><a href="boardlist.phtml?board=31"><img src="http://images.neopets.com/neoboards/boardIcons/ncmall.png"> NC Mall</a> <br>` +
-                $( "#boardIndex li:eq(14) .recent" ).text()
-                 + `</td>
+<tr id="bookmarked_boards" style="display: flex; flex-wrap: wrap; justify-content: center;">
+${bookmarked_board_html}
 </tr>
-<tr id="bookmarked_threads">
-    <td colspan="7" style="border: 0px;">
+<tr id="bookmarked_threads" style="display: flex; flex-wrap: wrap; justify-content: center;">
+    <td colspan="12" style="border: 0px;">
         <button type="button" class="collapsible_bookmarks">Bookmarked Threads</button>
             <div class="content_collapsed">
                 <table style="width:100%;">
@@ -181,10 +191,51 @@ for (i = 0; i < coll.length; i++) {
 }
 }
 
+function followBoardsToggle() {
+    $("#boardIndex ul li .boardDesc").each(function(i, index) {
+        var board = $(index).find("a h4").text();
+        var link = $(index).html().match(/(?<=<a href=").*?(?="><h4>)/g)[0];
+        var icon = $(index).parent().html().match(/(?<=url\().*?(?=\))/g);
+        var html = `<td><a href="${link}"><img src="${icon}" title="${board}"></a><br></td>`;
+        if($.inArray(html, followedBoards) !== -1) {
+            $(index).append( '<button type="button" class="boardfollow" style="background-color: #cacaca;"><p style="margin:3px;">REMOVE</p></button>' );
+        }
+        else {
+            $(index).append( '<button type="button" class="boardfollow" style="background-color: #79afa6;"><p style="margin:3px;">ADD</p></button>' );
+        }
+    });
+    $('.boardfollow').click(function() {
+        var updatingboard = $(this).parent().parent().find( ".boardDesc a h4" ).text();
+        var updatinglink = $(this).parent().parent().find( ".boardDesc" ).html().match(/(?<=<a href=").*?(?="><h4>)/g)[0];
+        var updatingicon = $(this).parent().parent().html().match(/(?<=url\().*?(?=\))/g);
+        var updatinghtml = `<td><a href="${updatinglink}"><img src="${updatingicon}" title="${updatingboard}"></a><br></td>`;
+         if($.inArray(updatinghtml, followedBoards) !== -1) {
+             var newFollowedBoards = followedBoards.filter(function(elem) {
+                 return elem != updatinghtml;
+             });
+             followedBoards = newFollowedBoards;
+         }
+         else {
+             followedBoards.push(updatinghtml);
+         }
+        GM_SuperValue.set ("BookmarkedBoardsNeopets", followedBoards);
+        $(".boardfollow").remove();
+        followBoardsToggle();
+        $(".threadfollow").remove();
+        followThreadsToggle();
+        $(".bookmarkedbt").remove();
+        $("#neonav").remove();
+        displayBookmarks();
+        displayBookmarkedThreads();
+        $(".collapsiblefollow").remove();
+        followThreadsToggleCollapsible();
+     });
+}
+
 function followThreadsToggle() {
     $(".topicTitle").each(function(i, title) {
         var thread = $(`.topicNavTop`).html().match(/(?<=<\/a>\n\t\t\t\t).*?(?=\n\t\t\t<\/div>)/g)[0];
-        var thread_title = thread.replace("Topic: ", "").replace("<h1>", "").replace("</h1>", "").replace(/(?<=&amp;).*?(?=">)/g);
+        var thread_title = thread.replace("Topic: ", "").replace("<h1>", "").replace("</h1>", "").replace(/(?<=&amp;).*?(?=">)/);
         if($.inArray(thread_title, followedThreads) !== -1) {
             $(title).after( '<button type="button" class="threadfollow" style="background-color: #cacaca;"><p>UNBOOKMARK</p></button>' );
         }
@@ -194,7 +245,7 @@ function followThreadsToggle() {
     });
     $('.threadfollow').click(function() {
          var updating = $(`.topicNavTop`).html().match(/(?<=<\/a>\n\t\t\t\t).*?(?=\n\t\t\t<\/div>)/g)[0];
-         var updatingThread = updating.replace("Topic: ", "").replace("<h1>", "").replace("</h1>", "").replace(/(?<=&amp;).*?(?=">)/g);
+         var updatingThread = updating.replace("Topic: ", "").replace("<h1>", "").replace("</h1>", "").replace(/(?<=&amp;).*?(?=">)/);
          if($.inArray(updatingThread, followedThreads) !== -1) {
              var newFollowedThreads = followedThreads.filter(function(elem) {
                  return elem != updatingThread;
@@ -218,7 +269,7 @@ function followThreadsToggle() {
 }
 function followThreadsToggleCollapsible() {
     $(".bookmark").each(function(i, bookmark) {
-            $(bookmark).parent().append( '<button type="button" class="collapsiblefollow" style="background-color: #cacaca;"><p>x</p></button>' );
+            $(bookmark).parent().append( '<button type="button" class="collapsiblefollow" style="background-color: #cacaca;"><p>X</p></button>' );
     });
     $('.collapsiblefollow').click(function() {
          var updatingThread = $(this).parent().find( ".bookmark" ).html().replace(/(\n\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s\s)/g, ``);
@@ -247,5 +298,6 @@ function followThreadsToggleCollapsible() {
 
 document.addEventListener('DOMContentLoaded', displayBookmarks);
 document.addEventListener('DOMContentLoaded', displayBookmarkedThreads);
+document.addEventListener('DOMContentLoaded', followBoardsToggle);
 document.addEventListener('DOMContentLoaded', followThreadsToggle);
 document.addEventListener('DOMContentLoaded', followThreadsToggleCollapsible);
