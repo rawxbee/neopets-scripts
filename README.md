@@ -30,7 +30,7 @@ Underlines topics made by followed users, highlights their replies.
 
 When on the neoboard index page you can choose to add or remove neoboards from your bookmarks. Additonally a bookmark button is added to threads, bookmarked threads are added to a collapsible menu above the neoboards.
 
-<img src="https://i.imgur.com/kLeJAeQ.png">
+<img src="https://i.imgur.com/ytLiz0F.png">
 
 <img src="https://i.imgur.com/ydv6oPT.png">
 
