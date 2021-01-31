@@ -28,16 +28,20 @@ Underlines topics made by followed users, highlights their replies.
 # neoboard-bookmarks.user.js
 *by sunbathr and rawbeee*
 
-Adds a bookmark button to threads, bookmarked threads are added to a collapsible menu above the neoboards.
+When on the neoboard index page you can choose to add or remove neoboards from your bookmarks. Additonally a bookmark button is added to threads, bookmarked threads are added to a collapsible menu above the neoboards.
 
-<img src="https://i.imgur.com/Dtzfdyl.png">
+<img src="https://i.imgur.com/kLeJAeQ.png">
+
+<img src="https://i.imgur.com/ydv6oPT.png">
 
 # extra-neoboard-smilies.user.js
 *by rawbeee and sunbathr*
 
-Adds the entire library of smilies to the neoboards. Hover over one of the six smilies at the top to access each category.
+Adds the entire library of smilies to the neoboards. Hover over one of the smilies to access each category. An additional category allows you to quickly link other users to your neomail/trades/auctions/shop/gallery.
 
-<img src="https://i.imgur.com/BCimkff.png">
+<img src="https://i.imgur.com/UOB65pz.png">
+
+<img src="https://i.imgur.com/m3IZTio.png">
 
 # premium-np-menu.user.js
 *This is an edit of the Neopets - Premium Toolbar (Beta) script made by EatWoolooAsMutton. The original can be found at https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code if you would prefer to use it*
