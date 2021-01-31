@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         Neopets: Extra Smilies
-// @version      1.2.1
+// @version      1.2.2
 // @description  Adds the entire smilie library to smilie section of the neoboards.
 // @author       rawbeee w/ edits by sunbathr
 // @match        http://www.neopets.com/neoboards/*
 // @run-at       document-start
 // ==/UserScript==
 $(`<style type='text/css'>
-.subnavc, .subnavp, .subnavp2p3, .subnavi, .subnavh, .subnavm, .subnavd {
+.subnavc, .subnavp, .subnavp2p3, .subnavi, .subnavh, .subnavm, .subnavd, .addNeomailLink {
   float: left;
   overflow: hidden;
   padding: 1px;
@@ -487,6 +487,8 @@ function smile() {
 
     </div>
   </div>
+<div class="addNeomailLink"><a href="#" class="smiley" onclick="insertSmiley(&quot;» http://www.neopets.com/neomessages.phtml?type=send&recipient=`
+    + appInsightsUserName + ` «&quot;); return false;"><img src="https://imagizer.imageshack.com/img923/9843/xm12v6.png" style="height: 20px;" alt="" border="0"></a></div>
  </div>`;
 
 $(`div.container.theme-bg`).append(`<div class="buffbuffer" style="height: 110px;"></div>`);
