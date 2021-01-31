@@ -1,18 +1,18 @@
 // ==UserScript==
 // @name         Neopets: Extra Smilies
-// @version      1.2.2
+// @version      1.2.3
 // @description  Adds the entire smilie library to smilie section of the neoboards.
-// @author       rawbeee w/ edits by sunbathr
+// @author       rawbeee & sunbathr
 // @match        http://www.neopets.com/neoboards/*
 // @run-at       document-start
 // ==/UserScript==
 $(`<style type='text/css'>
-.subnavc, .subnavp, .subnavp2p3, .subnavi, .subnavh, .subnavm, .subnavd, .addNeomailLink {
+.subnavc, .subnavp, .subnavp2p3, .subnavi, .subnavh, .subnavm, .subnavd, .subnavuser {
   float: left;
   overflow: hidden;
   padding: 1px;
 }
-.subnav-c, .subnav-p, .subnav-p2p3, .subnav-i, .subnav-h, .subnav-m, .subnav-d {
+.subnav-c, .subnav-p, .subnav-p2p3, .subnav-i, .subnav-h, .subnav-m, .subnav-d, .subnav-user {
   display: none;
   position: absolute;
   background-color: white;
@@ -23,38 +23,34 @@ $(`<style type='text/css'>
   background-color: white;
   padding: 2px;
 }
-.subnavc:hover .subnav-c, .subnavp:hover .subnav-p, .subnavp2p3:hover .subnav-p2p3, .subnavi:hover .subnav-i, .subnavh:hover .subnav-h, .subnavm:hover .subnav-m, .subnavd:hover .subnav-d{
+.subnavc:hover .subnav-c, .subnavp:hover .subnav-p, .subnavp2p3:hover .subnav-p2p3, .subnavi:hover .subnav-i, .subnavh:hover .subnav-h, .subnavm:hover .subnav-m, .subnavd:hover .subnav-d, .subnavuser:hover .subnav-user {
   display: block;
 }
 .subnav-c {
   left: 45px;
-  width: 322px;
 }
 .subnav-p {
   left: 90px;
-  width: 275px;
 }
 .subnav-p2p3 {
   left: 100px;
-  width: 305px;
 }
 .subnav-i {
   left: 130px;
-  width: 280px;
 }
 .subnav-h {
   left: 150px;
-  width: 280px;
 }
 .subnav-m {
   left: 160px;
-  width: 310px;
 }
 .subnav-d {
   left: 185px;
-  width: 280px;
 }
-.subnav-c::-webkit-scrollbar, .subnav-m::-webkit-scrollbar, .subnav-h::-webkit-scrollbar, .subnav-i::-webkit-scrollbar, .subnav-p2p3::-webkit-scrollbar, .subnav-p::-webkit-scrollbar, .subnav-d::-webkit-scrollbar {
+.subnav-user {
+  left: 268px;
+}
+.subnav-c::-webkit-scrollbar, .subnav-m::-webkit-scrollbar, .subnav-h::-webkit-scrollbar, .subnav-i::-webkit-scrollbar, .subnav-p2p3::-webkit-scrollbar, .subnav-p::-webkit-scrollbar, .subnav-d::-webkit-scrollbar, .subnav-user::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }
 .replySmilies-neoboards, .topicCreateSmilies-neoboards {
@@ -487,9 +483,28 @@ function smile() {
 
     </div>
   </div>
-<div class="addNeomailLink"><a href="#" class="smiley" onclick="insertSmiley(&quot;» http://www.neopets.com/neomessages.phtml?type=send&recipient=`
-    + appInsightsUserName + ` «&quot;); return false;"><img src="https://imagizer.imageshack.com/img923/9843/xm12v6.png" style="height: 20px;" alt="" border="0"></a></div>
- </div>`;
+
+<div class="subnavuser">
+    <img src="http://images.neopets.com/themes/h5/basic/images/v3/profile-icon.svg" style="height: 20px;" alt="" border="0">
+    <div class="subnav-user"><center>
+<table style="width:100%; text-align: center;">
+<tr>
+       <td><a href="#" class="smiley" onclick="insertSmiley(&quot;» http://www.neopets.com/neomessages.phtml?type=send&recipient=`
+    + appInsightsUserName + ` «&quot;); return false;"><img src="http://images.neopets.com/themes/h5/basic/images/v3/neomail-icon.svg" style="height: 20px;" alt="" border="0"></a></td>
+       <td><a href="#" class="smiley" onclick="insertSmiley(&quot;» http://www.http://www.neopets.com/island/tradingpost.phtml?type=browse&criteria=owner&search_string=`
+    + appInsightsUserName + ` «&quot;); return false;"><img src="http://images.neopets.com/themes/h5/basic/images/tradingpost-icon.png" style="height: 20px;" alt="" border="0"></a></td>
+       <td><a href="#" class="smiley" onclick="insertSmiley(&quot;» http://www.neopets.com/genie.phtml?type=find_user&auction_username=`
+    + appInsightsUserName + ` «&quot;); return false;"><img src="http://images.neopets.com/themes/h5/basic/images/auction-icon.png" style="height: 20px;" alt="" border="0"></a></td>
+       <td><a href="#" class="smiley" onclick="insertSmiley(&quot;» http://www.neopets.com/browseshop.phtml?owner=`
+    + appInsightsUserName + ` «&quot;); return false;"><img src="http://images.neopets.com/themes/h5/basic/images/myshop-icon.png" style="height: 20px;" alt="" border="0"></a></td>
+       <td><a href="#" class="smiley" onclick="insertSmiley(&quot;» http://www.neopets.com/gallery/index.phtml?gu=`
+    + appInsightsUserName + ` «&quot;); return false;"><img src="http://images.neopets.com/themes/h5/basic/images/v3/gallery-icon.svg" style="height: 20px;" alt="" border="0"></a></td>
+</tr>
+</center>
+</table>
+
+    </div>
+  </div>`;
 
 $(`div.container.theme-bg`).append(`<div class="buffbuffer" style="height: 110px;"></div>`);
 $(`.replySmilies-neoboards`).html(smilies);
