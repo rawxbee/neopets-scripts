@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Neopets - Premium NP Menu
-// @version      1.0.0
+// @version      1.0.1
 // @description  Click the NP icon to display your bankroll stats
 // @author       rawbeee - edited from EatWoolooAsMutton (https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code)
 // @match        http://www.neopets.com/*
@@ -138,28 +138,28 @@ if (hasPremium && $premium.exists()) {
                         stockPaid, stockQty, stockVal, percent
                     } = await getPremiumStats();
 
-                    const totalnum = total.replace(/[^a-zA-Z 0-9 _]+/g, '')
-                    const goal = (Number.parseInt(totalnum, 10)/(#/100)).toFixed(2)
-                    // replace # with your goal ie (25000000) and replace the goal image below, alternatively you can rip it out
+                    // const totalnum = total.replace(/[^a-zA-Z 0-9 _]+/g, '')
+                    // const goal = (Number.parseInt(totalnum, 10)/(#/100)).toFixed(2)
+                    // replace # with your goal ie (25000000) and replace the goal image below, then remove the // from the two above constants as well as the 3 lines of code within the html
 
                     $menu.html(`
                     <div class="navsub-np-meter__2020">
                     <a href="/bank.phtml?type=your" title="Bank Balance" style="text-decoration: none;">
                         <img src="http://images.neopets.com/premium/portal/images/banktotal-icon.png" style="height: 25px; width: 23px;">
                         <span id="np-bank" class="np-text__2020" style="">${bank}</span>
-                    </a><br>
-                    <a href="/market.phtml?type=till" title="Shop Till" style="text-decoration: none;">
+                    </a><br>` +
+                    `<a href="/market.phtml?type=till" title="Shop Till" style="text-decoration: none;">
                         <img src="http://images.neopets.com/premium/portal/images/shoptill-icon.png" style="height: 25px; width: 23px;">
                         <span id="np-till" class="np-text__2020">${till}</span>
-                    </a><br>
-                    <a href="/inventory.phtml" title="Total NP" style="text-decoration: none;">
+                    </a><br>` +
+                    `<a href="/inventory.phtml" title="Total NP" style="text-decoration: none;">
                         <img src="http://images.neopets.com/premium/portal/images/nptotal-icon.png" style="height: 25px; width: 23px;">
                         <span id="np-total" class="np-text__2020">${total}</span>
-                    </a><br>
-		                <img src="http://images.neopets.com/items/earth_staff.gif" style="height: 25px; width: 23px;">
-                        <span id="npanchor" class="np-text__2020">${goal}%</span>
-<br>
-                    <a href="/stockmarket.phtml?type=portfolio" title="Stocks" style="text-decoration: none;">
+                    </a><br>` +
+		                //`<img src="http://images.neopets.com/items/earth_staff.gif" style="height: 25px; width: 23px;">
+                        //<span id="npanchor" class="np-text__2020">${goal}%</span>
+                      //<br>` +
+                    `<a href="/stockmarket.phtml?type=portfolio" title="Stocks" style="text-decoration: none;">
 		                <img src="http://images.neopets.com/premium/portal/images/stocks-positive.svg" style="height: 25px; width: 23px;">
                         <span id="npanchor" class="np-text__2020" style="color: ${percent.match(/\+/) ? "#008000" : "#ff0000"}">${percent}</span>
                     </a>
@@ -179,7 +179,7 @@ if (hasPremium && $premium.exists()) {
         }
 
         if ($menu.is(":hidden")) {
-            $(this).find(".navsub-np-meter__2020").html(`<div class="navsub-np-icon__2020"></div><span id="npanchor" class="np-text__2020">${onhand} -</span>`);
+            $(this).find(".navsub-np-meter__2020").html(`<div class="navsub-np-icon__2020"></div><span id="npanchor" class="np-text__2020">${onhand} x</span>`);
             $menu.show();
         } else if ($menu.is(":visible")) {
             $(this).find(".navsub-np-meter__2020").html(`<div class="navsub-np-icon__2020"></div><span id="npanchor" class="np-text__2020">${onhand} +</span>`);
