@@ -60,7 +60,7 @@ if (hasPremium && $premium.exists()) {
                                 stats["stockVal"] = html;
                                 break;
                             case 6:
-                                stats["percent"] = $(element).attr("class");
+                                stats["percent"] = html;
                                 break;
                             default:
                             // your pc explodes if you reach here
