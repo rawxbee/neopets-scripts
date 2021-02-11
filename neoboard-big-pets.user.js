@@ -60,7 +60,7 @@ div.postAuthorInfo p {
 
 GM_addStyle (`
 span.actions {
-margin-left: 50;
+margin-left: 50px;
 }`);
 
 function getPostAuthorPet()
