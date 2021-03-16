@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Neopets: Neoboard Big Pets
-// @version      1.1
+// @version      1.2
 // @description  Makes all pets on the neoboards larger and of higher quality, rearrannges user info/avatar and tries to better align the contents of the post for the larger white space
-// @author       rawbeee - edited from Harvey (https://github.com/Blathers/neopets-user-scripts/)
+// @author       Harvey (https://github.com/Blathers/neopets-user-scripts/) - edited by rawbeee
 // @match        http://www.neopets.com/neoboards/topic*
 // @grant        none
 // ==/UserScript==
@@ -67,8 +67,8 @@ div.postAuthorInfo p {
 }`);
 
 GM_addStyle (`
-span.actions {
-margin-left: 40px;
+div.postAuthorInfo {
+  text-align: center;
 }`);
 
 GM_addStyle (`
@@ -80,6 +80,11 @@ GM_addStyle (`
 div.thiefLabel {
   margin-top: 18px;
   margin-left: 45px;
+}`);
+
+GM_addStyle (`
+.userTag {
+  display:table !important;
 }`);
 
 function getPostAuthorPet()
