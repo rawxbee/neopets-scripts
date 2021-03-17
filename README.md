@@ -1,6 +1,6 @@
 # neopets-scripts
 
-Use: Download <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">tampermonkey</a>. Open the script file of your choice and clikc the raw tab, install.
+Use: Download <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">tampermonkey</a>. Open the script file of your choice and click the raw tab, install.
 
 # dailies.user.js
 *by rawbeee and sunbathr*
