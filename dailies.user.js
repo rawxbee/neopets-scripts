@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Neopets: Dailies
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Dailies
 // @author       rawbeee - including edits from sunbathr
-// @match        http://www.neopets.com/*
+// @match        *www.neopets.com/*
 // @grant        none
 // ==/UserScript==
 $(`<style type='text/css'>
@@ -286,7 +286,7 @@ $(`<div class="togglePopup__2020 movePopup__2020 dailiespopup" id="dailies_pop" 
 
 <div class="popup-header-pattern__2020"></div>
 		</div>
-		<div class="popup-body__2020" style="background-color: #edfcf8; border: solid 2px #63c0b1;">
+		<div class="popup-body__2020" style="background-color: #edfcf8; border: solid 2px #edfcf8;;">
 
 <center><table style="margin: 10px;">
 <tr>
