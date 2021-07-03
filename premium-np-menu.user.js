@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Neopets - Premium NP Menu
-// @version      1.0.1
+// @version      1.0.2
 // @description  Click the NP icon to display your bankroll stats
 // @author       rawbeee - edited from EatWoolooAsMutton (https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code)
-// @match        http://www.neopets.com/*
-// @exclude      http://www.neopets.com/haggle.phtml*
+// @match        *www.neopets.com/*
+// @exclude      *www.neopets.com/haggle.phtml*
 // @grant        none
 // ==/UserScript==
 
