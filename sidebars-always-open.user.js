@@ -24,6 +24,7 @@ function increaseTrack()
         results[i].innerHTML = newhtml;
     }
 }
+
 function EditAttributeValue(elemId, attribute, newvalue)
 {
     $("#"+elemId).attr(attribute,newvalue);
@@ -37,6 +38,7 @@ async function toggleSidebar()
     openorcloseonload();
 
 }
+var petLarge = false;
 
 async function openorcloseonload()
 {
@@ -51,6 +53,32 @@ async function openorcloseonload()
     if (toggled)
     {
         openSidebar();
+        petLarge = await GM.getValue("sidebar_pet_large", false);
+        if (petLarge)
+        {
+            var container = document.getElementById('navProfilePetBox__2020');
+            var pet = document.getElementById('navProfilePet__2020');
+            var icon = document.getElementById('navProfilePetExpandIcon__2020');
+            // remove class names
+            container.classList.remove('nav-profile-pet-box-sm__2020');
+            pet.classList.remove('nav-profile-pet-sm__2020');
+            icon.classList.remove('nav-profile-pet-expand__2020');
+            // add class names
+            container.classList.add('nav-profile-pet-box-lg__2020');
+            pet.classList.add('nav-profile-pet-lg__2020');
+            icon.classList.add('nav-profile-pet-contract__2020');
+        }
+        else
+        {
+            // remove class names
+	    container.classList.remove('nav-profile-pet-box-lg__2020');
+	    pet.classList.remove('nav-profile-pet-lg__2020');
+	    icon.classList.remove('nav-profile-pet-contract__2020');
+	    // add class names
+	    container.classList.add('nav-profile-pet-box-sm__2020');
+	    pet.classList.add('nav-profile-pet-sm__2020');
+	    icon.classList.add('nav-profile-pet-expand__2020');
+        }
     }
     else
     {
@@ -200,7 +228,16 @@ function removeAlertLink()
     }
 }
 
+async function updatePetLarge () {
+    GM.setValue("sidebar_pet_large", !petLarge);
+    toggleProfilePet();
+}
 
+function updatePetSizeButtons()
+{
+    var expand = document.getElementsByClassName("nav-profile-pet-expand__2020");
+    expand[0].onclick = updatePetLarge;
+}
 
 function GM_addStyle(css) {
   const style = document.getElementById("GM_addStyleBy8626") || (function() {
@@ -218,3 +255,4 @@ removeLink();
 openorcloseonload();
 removeAlertLink();
 openorclosealtonload();
+updatePetSizeButtons();
