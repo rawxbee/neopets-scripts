@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Neopets - Premium NP Menu
-// @version      1.0.2
+// @version      1.0.3
 // @description  Click the NP icon to display your bankroll stats
 // @author       rawbeee - edited from EatWoolooAsMutton (https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code)
 // @match        *www.neopets.com/*
@@ -33,7 +33,7 @@ if (hasPremium && $premium.exists()) {
             $.ajax({
                 type : "GET",
                 async : true,
-                url : "/premium",
+                url : "/premium/",
                 timeout : 10000,
                 dataFilter : data => {
                     const response = $.parseHTML(data);
