@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DTI Lists Abroad
 // @description  Cross-check your wishlist and tradelist with JN wishlists and tradelists as well as user galleries. View your DTI wishlist while logged in to initiate list population.
-// @version      1.0.0
+// @version      1.0.1
 // @author       rawbeee (based on scripts by sunbathr and friendly-trenchcoat)
 // @match        *impress.openneo.net/*
 // @match        *www.neopets.com/gallery/*
@@ -40,6 +40,7 @@ function populateLists () {
 }
 
 function highlightLists() {
+    let dupe_check = [];
     //Gallery
     if (document.URL.includes("neopets.com/gallery")) {
         let found = 0;
@@ -74,8 +75,11 @@ function highlightLists() {
                 if ($.inArray(name, myWishlist) !== -1) {
                     $((el)).css("border", '1px solid red');
                     $((el)).css("box-shadow", '0px 0px 1px 1px red');
-                    wfound += 1;
-                    highlighted.push(' ' + name);
+                    if ($.inArray(name, dupe_check) == -1) {
+                        dupe_check.push(name);
+                        wfound += 1;
+                        highlighted.push(' ' + name);
+                    }
                 }
             });
             $(document.getElementsByClassName("row hide-for-print")).after(`<div id="found-items"><b>Found ${wfound} item(s) that you want:</b></div><br>`);
@@ -94,8 +98,11 @@ function highlightLists() {
                 if ($.inArray(name, myTradelist) !== -1) {
                     $((el)).css("border", '1px solid green');
                     $((el)).css("box-shadow", '0px 0px 1px 1px green');
-                    tfound += 1;
-                    highlighted.push(' ' + name);
+                    if ($.inArray(name, dupe_check) == -1) {
+                        dupe_check.push(name);
+                        tfound += 1;
+                        highlighted.push(' ' + name);
+                    }
                 }
             });
             $(document.getElementsByClassName("row hide-for-print")).after(`<div id="found-items"><b>Found ${tfound} item(s) that you own:</b></div><br>`);
@@ -118,14 +125,20 @@ function highlightLists() {
                 if ($.inArray(name, myTradelist) !== -1) {
                     $((el)).css("border", '1px solid green');
                     $((el)).css("box-shadow", '0px 0px 1px 1px green');
-                    tfound += 1;
-                    thighlighted.push(' ' + name);
+                    if ($.inArray(name, dupe_check) == -1) {
+                        dupe_check.push(name);
+                        tfound += 1;
+                        thighlighted.push(' ' + name);
+                    }
                 }
                 else if ($.inArray(name, myWishlist) !== -1) {
                     $((el)).css("border", '1px solid red');
                     $((el)).css("box-shadow", '0px 0px 1px 1px red');
-                    wfound += 1;
-                    whighlighted.push(' ' + name);
+                    if ($.inArray(name, dupe_check) == -1) {
+                        dupe_check.push(name);
+                        wfound += 1;
+                        whighlighted.push(' ' + name);
+                    }
                 }
             });
             $(document.getElementsByClassName("row hide-for-print")).after(`<div id="found-items"><b>Unable to determine if the list is a tradelist or wishlist.<br><br>Found ${tfound} item(s) that you own:</b></div><br>`);
