@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Neopets - User Tagger
-// @version      1.0.2
+// @version      1.0.3
 // @author       diceroll123, 2016+ - edited by rawbeee
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @require      http://code.jquery.com/jquery-latest.js
-// @match        *www.neopets.com/neoboards/*
+// @match        *://www.neopets.com/neoboards/*
+// @match        *://neopets.com/neoboards/*
 // ==/UserScript==
 
 $(`<style type='text/css'>
