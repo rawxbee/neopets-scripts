@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name         Sidebars Always Open
-// @version      1.0.1
+// @version      1.0.2
 // @description  Sidebars can remain always open (or closed) across pages. Click the pet icon or bell icon to toggle the respective sidebar.
 // @author       Harvey - edited by rawbeee
-// @match        *www.neopets.com/*
+// @match        *://www.neopets.com/*
+// @match        *://neopets.com/*
 // @grant        GM.getValue
 // @grant        GM.setValue
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
