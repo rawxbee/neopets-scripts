@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         Neopets: Neoboard Big Pets
-// @version      1.2.1 on the neoboards larger and of higher quality, rearrannges user info/avatar and tries to better align the contents of the post for the larger white space
+// @version      1.2.2
 // @author       Harvey (https://github.com/Blathers/neopets-user-scripts/) - edited by rawbeee
-// @match        *www.neopets.com/neoboards/topic*
+// @match        *://www.neopets.com/neoboards/topic*
+// @match        *://neopets.com/neoboards/topic*
 // @grant        none
 // ==/UserScript==
 
