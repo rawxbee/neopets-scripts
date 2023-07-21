@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         DTI Lists Abroad
 // @description  Cross-check your wishlist and tradelist with JN wishlists and tradelists as well as user galleries. View your DTI wishlist while logged in to initiate list population.
-// @version      1.0.1
+// @version      1.0.2
 // @author       rawbeee (based on scripts by sunbathr and friendly-trenchcoat)
 // @match        *impress.openneo.net/*
-// @match        *www.neopets.com/gallery/*
+// @match        *://www.neopets.com/gallery/*
+// @match        *://neopets.com/gallery/*
 // @match        *items.jellyneo.net/mywishes*
 // @require      http://code.jquery.com/jquery-latest.js
 // @require      http://userscripts-mirror.org/scripts/source/107941.user.js
