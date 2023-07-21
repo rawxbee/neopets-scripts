@@ -4,7 +4,8 @@
 // @version      1.1
 // @description  Dailies
 // @author       rawbeee - including edits from sunbathr
-// @match        *www.neopets.com/*
+// @match        *://www.neopets.com/*
+// @match        *://neopets.com/*
 // @grant        none
 // ==/UserScript==
 $(`<style type='text/css'>
