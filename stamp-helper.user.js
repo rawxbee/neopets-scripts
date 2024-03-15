@@ -23,7 +23,7 @@ const owner = location.search.match(/owner=(.+)&*/)?.[1] || appInsightsUserName;
  *  Stamp list shamelessly scraped from Jellyneo item database
  *  (https://items.jellyneo.net/)
  *
- *  Stamp album data last updated 19 June 2022
+ *  edit by rawbeee: stored stamp data in a gist, retooled the script to grab this data from a url (which I keep updated) so that it isn't required to update the script manually.
  *
  ****************************************************************************************/
 const albumID = location.search.match(/page_id=(\d+)&*/)[1];
