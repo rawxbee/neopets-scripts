@@ -30,16 +30,6 @@ Displays the Lutari Talisman using HTML, with grey beads denoting those you have
 
 <img src="https://i.imgur.com/TfUXctZ.png">
 
-
-# premium-np-menu.user.js
-*This is an edit of the Neopets - Premium Toolbar (Beta) script made by EatWoolooAsMutton. The original can be found at https://greasyfork.org/en/scripts/419395-neopets-premium-toolbar-beta/code if you would prefer to use it*
-
-Display shop till/bank/total/stocks in a dropdown. 
-
-<img src="https://i.imgur.com/cfyeLOT.png">
-
-(yes I'm poor what about it 💁‍♂️)
-
 # neoboard-big-pets.user.js
 *This is an edit of the BigPet.user.js script made by Harvey. The original can be found at https://github.com/Blathers/neopets-user-scripts if you would prefer to use it*
 
