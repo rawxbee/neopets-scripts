@@ -4,8 +4,6 @@
 // @version      1.0.1
 // @description  Revamps the Overview page
 // @match        *://www.neopets.com/stamps.phtml?type=progress
-// @match        *://www.neopets.com/stamps.phtml?owner=*
-// @match        *://www.neopets.com/stamps.phtml?type=album&page_id=0&owner=*
 // @icon         https://images.neopets.com/themes/h5/altadorcup/images/settings-icon.png
 // @require      https://code.jquery.com/jquery-3.7.1.min.js
 // ==/UserScript==
@@ -240,8 +238,5 @@
     let ownerURL = 'https://www.neopets.com/stamps.phtml?owner=' + owner;
     if (window.location.href.includes("/stamps.phtml?type=progress")) {
         window.addEventListener('load', extractStampData);
-    }
-    else if (window.location.href === defaultURL || window.location.href === ownerURL) {
-        window.location.href = "https://www.neopets.com/stamps.phtml?type=progress";
     }
 })();
