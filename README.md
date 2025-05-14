@@ -7,7 +7,7 @@ Use: Download <a href="https://chrome.google.com/webstore/detail/tampermonkey/dh
 
 Revamps the [Overview page](https://www.neopets.com/stamps.phtml?type=progress) to better display progress for each album, including how many stamps are currently available and whether an avatar is tied to the album. No need to update for new stamp releases.
 
-<img src="https://i.imgur.com/5GYK9xZ.png">
+<img src="https://i.imgur.com/K9WJTNK.png">
 
 # carousel-be-gone.user.js
 *by rawbeee*
@@ -28,7 +28,7 @@ Adds a button to the buffer nav that creates a popup with links to dailies. Easi
 
 Displays the Lutari Talisman using HTML, with grey beads denoting those you have not yet collected. Your current benefits are displayed above the Talisman, and clicking any bead will provide details about it here. If you have premium you can double-click to open the Super Shop Wizard and quickly search for the bead.
 
-<img src="https://i.imgur.com/TfUXctZ.png">
+<img src="https://i.imgur.com/a7KwbDl.png">
 
 # neoboard-big-pets.user.js
 *This is an edit of the BigPet.user.js script made by Harvey. The original can be found at https://github.com/Blathers/neopets-user-scripts if you would prefer to use it*
