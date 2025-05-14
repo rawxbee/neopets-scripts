@@ -162,15 +162,6 @@
                   </div>
                 </div>
               </div>
-            <div style="display: grid; justify-content: center; align-content: center;
-              height: 20px; margin-top: -5px; text-align: center;">
-                <a href="https://items.jellyneo.net/search/?album=${key}&amp;sort=6">
-                  <img style="width: 20px;"
-                    onmouseover="this.style.transform = 'scale(1.2)'; this.style.transition='all 0.3s';"
-                    onmouseout="this.style.transform = 'scale(1)'; this.style.transition='all 0.3s';"
-                    src="https://www.jellyneo.net/layout/imgs/mainsite/favicon.png">
-                </a>
-            </div>
           </div>`;
                 allStampDivs += stampDiv;
             }
