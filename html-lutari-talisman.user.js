@@ -478,7 +478,7 @@
 
         // HTML content for benefits display
         const beadInfoContent = `
-            <h3 style="margin-top: 5px; margin-bottom: 5px;">Current Benefits <a target="_blank" title="per Jellyneo" href="https://www.jellyneo.net/?go=lutaritalisman"><img style="height: 18px;position: absolute;top: 5px;margin-left: 5px;" src="https://www.jellyneo.net/layout/imgs/mainsite/favicon.png"></a></h3>
+            <h3 style="margin-top: 5px; margin-bottom: 5px;">Current Benefits</h3>
             <div style="display: grid; grid-template-columns: max-content 1fr; row-gap: 8px; column-gap: 10px; align-items: center; padding: 10px;">
                 <span style="background: #3a2fcc91; padding: 3px; border-radius: 5px;">Blue:</span>
                 <span style="text-align: left;">${blueMessage}</span>
