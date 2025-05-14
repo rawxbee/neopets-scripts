@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: HTML Lutari Talisman
 // @author       rawbeee
-// @version      1.0.0
+// @version      1.0.1
 // @description  Displays Lutari Talisman in HTML with details about benefits and beads.
 // @match        *://www.neopets.com/mobile/yourtali.phtml
 // @icon         https://images.neopets.com/themes/h5/altadorcup/images/settings-icon.png
