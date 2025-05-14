@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: Album Overview
 // @author       rawbeee
-// @version      1.0.0
+// @version      1.0.1
 // @description  Revamps the Overview page
 // @match        *://www.neopets.com/stamps.phtml?type=progress
 // @match        *://www.neopets.com/stamps.phtml?owner=*
