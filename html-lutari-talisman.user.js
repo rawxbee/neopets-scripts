@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: HTML Lutari Talisman
 // @author       rawbeee
-// @version      1.0.1
+// @version      1.0.2
 // @description  Displays Lutari Talisman in HTML with details about benefits and beads.
 // @match        *://www.neopets.com/mobile/yourtali.phtml
 // @icon         https://images.neopets.com/themes/h5/altadorcup/images/settings-icon.png
@@ -419,7 +419,7 @@
 
                 // Add click event to show bead info
                 beadImg.addEventListener('click', function() {
-                    showBeadInfo(beadImg.alt, beadType, set.color);
+                    showBeadInfo(beadImg.alt, beadType, set.color, beadImg.style.filter);
                 });
 
                 // Add double-click event for premium users to open SSW
@@ -523,10 +523,12 @@
     }
 
     // Show detailed information for a specific bead
-    function showBeadInfo(beadName, beadType, color) {
+    function showBeadInfo(beadName, beadType, color, status) {
         const beadFullName = `${color.charAt(0).toUpperCase() + color.slice(1)} ${beadType.charAt(0).toUpperCase() + beadType.slice(1)} Bead`;
         const description = beadDescriptions[color.toLowerCase()];
         const imageUrl = beadImageURLs[color.toLowerCase()][beadType.toLowerCase()];
+        const collected = status === 'grayscale(100%)' ? '30px' : '0px';
+        const collectedAlt = collected === '30px' ? 'Not Collected' : 'Collected';
 
         // Check if user has premium access
         const isPremium = document.querySelector('.sswdrop') !== null;
@@ -539,6 +541,7 @@
         // Create detailed bead info HTML
         const beadInfoHTML = `
             <img src="${imageUrl}" style="position: absolute; left: 20px; top: 40px; border-radius: 8px; border: 2px solid black;">
+            <div alt="${collectedAlt}" title="${collectedAlt}" style="background: url('https://images.neopets.com/charity/toydrive/item_states.png') white;position: absolute;left: 45px;top: 105px;width: 30px;height: 30px;background-position-x: ${collected};border-radius: 8px;border: 2px solid black;"></div>
             <div style="width: 360px; position: absolute;left: 120px; top: 6px;">
                 <h3>${beadFullName}</h3>
                 ${description}
