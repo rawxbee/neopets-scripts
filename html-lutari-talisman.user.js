@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: HTML Lutari Talisman
 // @author       rawbeee
-// @version      1.0.2
+// @version      1.0.3
 // @description  Displays Lutari Talisman in HTML with details about benefits and beads.
 // @match        *://www.neopets.com/mobile/yourtali.phtml
 // @icon         https://images.neopets.com/themes/h5/altadorcup/images/settings-icon.png
@@ -438,9 +438,12 @@
         // Insert talisman into the page
         const target = document.querySelector('.flashRIP__2020');
         if (target) {
+            document.querySelector('ruffle-embed')?.remove();
             target.innerHTML = '';
             target.style.backgroundColor = "transparent";
             target.appendChild(container);
+            target.classList.replace("flashRIP__2020", "HTML_Talisman");
+            target.style.display = "block";
         } else {
             console.warn(".flashRIP__2020 element not found.");
         }
@@ -505,7 +508,7 @@
         `;
 
         // Insert the info box into the page
-        const target = document.querySelector('.flashRIP__2020');
+        const target = document.querySelector('.HTML_Talisman');
         if (target) {
             target.insertAdjacentHTML('beforebegin', beadInfo);
 
