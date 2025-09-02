@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Neopets: Better Volunteering UI
-// @version      1.1
+// @version      1.2
 // @description  Brings the select pet UI to each individual shift on the Neopets Hospital volunteering page.
 // @author       rawbeee
 // @match        *://*.neopets.com/hospital/volunteer.phtml*
@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
     let initialized = false;
@@ -100,6 +100,13 @@
         const joinButton = fight.querySelector('[id^="VolunteerButton"]');
         if (!joinButton || joinButton.innerText.trim() !== 'Join Shift') return;
 
+        let locked = false
+        const lock = fight.querySelector('.vc-lock');
+        console.log(lock)
+        if (lock) {
+            locked = true;
+        }
+
         const fightIdMatch = joinButton.id && joinButton.id.match(/\d+$/);
         const fightNumber = fightIdMatch ? fightIdMatch[0] : '';
 
@@ -141,7 +148,7 @@
             img.setAttribute('data-petname', pet);
 
             const isGreyed = volunteeringPets.includes(pet);
-            if (isGreyed) {
+            if (isGreyed || locked) {
                 img.style.filter = 'grayscale(100%) opacity(0.5)';
                 imageDiv.style.pointerEvents = 'none';
                 imageDiv.style.opacity = '0.6';
@@ -149,7 +156,7 @@
                 imageDiv.style.cursor = '';
             }
 
-            imageDiv.onclick = function() {
+            imageDiv.onclick = function () {
                 const currentVolunteering = getVolunteeringPets();
                 if (currentVolunteering.includes(pet)) return;
 
@@ -175,7 +182,7 @@
         container.appendChild(imagesWrapper);
         container.appendChild(volunteerBtn);
 
-        volunteerBtn.addEventListener('click', function() {
+        volunteerBtn.addEventListener('click', function () {
             const selectedPet = volunteerBtn.getAttribute('data-pet');
             if (!selectedPet) return;
 
@@ -263,7 +270,7 @@
             volunteerBtn.textContent = 'Cancel';
         });
 
-        volunteerBtn.onclick = function() {
+        volunteerBtn.onclick = function () {
             this.id = 'VolunteerJoinButton';
             startBetterShift(this);
         };
@@ -310,9 +317,7 @@
         wrapper.innerHTML = `
             <div class="h5-dialogue dialogue-lg">
                 <div class="h5-speaker"><mark>Better Volunteering UI</mark></div>
-                <p style="text-align: left;"><b>Tips:</b></p>
-                <p style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;• If you aren't seeing some of your pets, make sure to refresh the list by visiting <a href="https://www.neopets.com/quickref.phtml">Quick Reference</a>.</p>
-                <p style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;• After volunteering all of your pets, refresh for the 'Skip Time' buttons to appear.</p>
+                <p><b>Tip:</b> If you aren't seeing some of your pets, make sure to refresh the list by visiting <a href="https://www.neopets.com/quickref.phtml">Quick Reference</a>.</p>
             </div>
         `;
         volunteering.parentNode.insertBefore(wrapper, volunteering);
@@ -331,58 +336,62 @@
 
     function startBetterShift(e) {
 
-	let fight = e.dataset.fight;
-	let pet = e.dataset.pet;
+        let fight = e.dataset.fight;
+        let pet = e.dataset.pet;
 
-	if (document.getElementById("VolunteerJoinButton").hasAttribute("disabled") || fight == "" || pet == "") {
-		let errMsg = fight == "" ? "You have not selected a Battle! You must first select a Battle to volunteer!" : "You must select which pet you want to volunteer!";
-		document.getElementById("VolunteerErrMsg").innerHTML = errMsg;
-		togglePopup__2020(document.getElementById("VolunteerErrorPopup"));
-		return;
-	}
+        if (document.getElementById("VolunteerJoinButton").hasAttribute("disabled") || fight == "" || pet == "") {
+            let errMsg = fight == "" ? "You have not selected a Battle! You must first select a Battle to volunteer!" : "You must select which pet you want to volunteer!";
+            document.getElementById("VolunteerErrMsg").innerHTML = errMsg;
+            togglePopup__2020(document.getElementById("VolunteerErrorPopup"));
+            return;
+        }
 
-	e.setAttribute("disabled", '');
+        e.setAttribute("disabled", '');
 
-	let formData = new FormData();
-	formData.append("_ref_ck", getCK());
-	formData.append("fight_id", fight);
-	formData.append("pet_name", pet);
+        let formData = new FormData();
+        formData.append("_ref_ck", getCK());
+        formData.append("fight_id", fight);
+        formData.append("pet_name", pet);
 
-	document.getElementById("VolunteerErrMsg").innerHTML = "";
+        document.getElementById("VolunteerErrMsg").innerHTML = "";
 
-	fetch("/np-templates/ajax/plots/hospital/volunteer-join.php", {
-	    method: "POST",
-	    headers: {"x-requested-with": "XMLHttpRequest"},
-		body: formData,
-	})
-	    .then(
-	        function (response) {
-	            if (response.status !== 200) {
-	                console.log("Error setting state!");
-	            }
-
-				response.json().then(function (data) {
-					if (data.success) {
-						togglePopup__2020(document.getElementById("VolunteerJoinedPopup"));
-						setFightInService(fight, data);
-						showFights();
-						let clock = new vcClock((data.time / 3600), 0, 0);
-						intervals["fight"+fight+"Clock"] = setInterval(function() {
-							clock.tick("fight",fight);
-						}, 1000);
-					}
-                    if (data.error) {
-						document.getElementById("VolunteerErrMsg").innerHTML = data.errMsg;
-						togglePopup__2020(document.getElementById("VolunteerErrorPopup"));
+        fetch("/np-templates/ajax/plots/hospital/volunteer-join.php", {
+            method: "POST",
+            headers: { "x-requested-with": "XMLHttpRequest" },
+            body: formData,
+        })
+            .then(
+                function (response) {
+                    if (response.status !== 200) {
+                        console.log("Error setting state!");
                     }
-					e.removeAttribute("disabled");
-                });
-	        }
-	    )
-	    .catch(function (err) {
-	        console.log("Fetch Error :-S", err);
-	    });
-}
+
+                    response.json().then(function (data) {
+                        if (data.success) {
+                            //togglePopup__2020(document.getElementById("VolunteerJoinedPopup"));
+                            setFightInService(fight, data);
+                            showFights();
+                            if (!data.isPremium && data.adsHtml != '') {
+                                document.getElementById("showAdsButtons-" + fight).innerHTML = data.adsHtml;
+                                checkIfVideoAdAvailable();
+                            }
+                            let clock = new vcClock((data.time / 3600), 0, 0);
+                            intervals["fight" + fight + "Clock"] = setInterval(function () {
+                                clock.tick("fight", fight);
+                            }, 1000);
+                        }
+                        if (data.error) {
+                            document.getElementById("VolunteerErrMsg").innerHTML = data.errMsg;
+                            togglePopup__2020(document.getElementById("VolunteerErrorPopup"));
+                        }
+                        e.removeAttribute("disabled");
+                    });
+                }
+            )
+            .catch(function (err) {
+                console.log("Fetch Error :-S", err);
+            });
+    }
 
     function init() {
         if (initialized) return;
