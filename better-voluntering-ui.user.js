@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Neopets: Better Volunteering UI
-// @version      1.2
+// @version      1.2.1
 // @description  Brings the select pet UI to each individual shift on the Neopets Hospital volunteering page.
 // @author       rawbeee
 // @match        *://*.neopets.com/hospital/volunteer.phtml*
@@ -102,7 +102,6 @@
 
         let locked = false
         const lock = fight.querySelector('.vc-lock');
-        console.log(lock)
         if (lock) {
             locked = true;
         }
