@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: Repeat Pet Care Buttons
 // @author       rawbeee
-// @version      1.0
+// @version      1.0.1
 // @description  Adds a 'Play Again' or 'Groom Again' button that reuses an item when grooming or playing with a pet
 // @match        *://*.neopets.com/home/*
 // @icon         https://images.neopets.com/themes/h5/altadorcup/images/settings-icon.png
@@ -27,7 +27,7 @@
         button.className = 'petCare-button-action button-default__2020 button-green__2020';
         button.id = 'petCareUseItemAgain';
         button.textContent = label;
-        if (type === 'play') button.style.maxWidth = 'none';
+        button.style.maxWidth = 'none';
 
         button.onclick = function () {
             if (typeof trackDetails === 'function') trackDetails();
