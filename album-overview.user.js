@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: Album Overview
 // @author       rawbeee
-// @version      1.0.2
+// @version      1.0.3
 // @description  Revamps the Overview page
 // @match        *://www.neopets.com/stamps.phtml?type=progress
 // @icon         https://images.neopets.com/themes/h5/altadorcup/images/settings-icon.png
@@ -39,7 +39,6 @@
 `;
         document.head.appendChild(robotoFont);
 
-
         let table = document.querySelector('table[border="1"][cellpadding="3"][cellspacing="0"]');
         if (!table) return;
 
@@ -58,8 +57,12 @@
 
             stampData[index + 1] = { "album": album, "stamps": stamps, "percentage": percentage };
         });
+
         let albumDetails = '';
-        fetch("https://gist.githubusercontent.com/rawxbee/406b49844f6664acbd4f1a0af87546d3/raw")
+        const data_url = "https://gist.githubusercontent.com/rawxbee/406b49844f6664acbd4f1a0af87546d3/raw";
+        const cacheBuster = `cb=${Date.now()}`;
+
+        fetch(`${data_url}?${cacheBuster}`)
             .then(response => {
                 if (!response.ok) throw new Error('Could not retrieve data');
                 return response.json();
@@ -73,9 +76,22 @@
                     let album = stampData[key].album;
                     let collected = stampData[key].stamps;
                     let percentage = stampData[key].percentage;
+
+                    if (!albumDetails[key]) {
+                        console.log(
+                            `Album ${key} (${album}) missing from albumDetails JSON. Using dummy data.`
+                        );
+                        albumDetails[key] = {
+                            album: album,
+                            avatar: "https://images.neopets.com/neoboards/boardIcons/avatars.png",
+                            total: 0
+                        };
+                    }
+
                     let avatar = albumDetails[key].avatar;
                     let total = albumDetails[key].total;
-                    trueTotal += total
+                    trueTotal += total;
+
                     let text = `${collected}/${total}`;
                     let bgColor = 'url(\'https://images.neopets.com/quests/images/bg-stars-pattern.png\'), linear-gradient(#B7B7B7 0%, #e5e5e5 50%, #b7b7b7 100%)';
                     let filter = 'grayscale(1)';
@@ -84,23 +100,20 @@
                     let barColor = '';
                     let glowColor = '';
                     let borderColor = '#929292';
-                    let barBorderColor = '#929292'
+                    let barBorderColor = '#929292';
                     let barMissing = '#FEFEFE';
 
                     if (true_pct <= 19) {
                         barColor = '#FF6F6F';
                         glowColor = '#FF6F6F';
-
                     }
                     else if (20 <= true_pct && true_pct <= 39) {
                         barColor = '#FFB47A';
                         glowColor = '#FFB47A';
-
                     }
                     else if (40 <= true_pct && true_pct <= 59) {
                         barColor = '#FFF19C';
                         glowColor = '#FFF19C';
-
                     }
                     else if (60 <= true_pct && true_pct <= 79) {
                         barColor = '#A4E389';
@@ -173,8 +186,11 @@
 `;
                     allStampDivs += stampDiv;
                 }
+
                 let medtext = [...document.querySelectorAll('p')].filter(p => p.textContent.includes('You have a total of'));
-                medtext[0].remove();
+                if (medtext[0]) {
+                    medtext[0].remove();
+                }
 
                 let ads = false;
                 let stampContent;
@@ -207,6 +223,7 @@
                     barColor = 'url(\'https://images.neopets.com/quests/images/bg-stars-pattern.png\'), linear-gradient(to right, rgb(255, 165, 0) 0%, rgb(255, 242, 133) 50%, rgb(255, 165, 0) 100%)';
                     borderColor = '#CC8400';
                 }
+
                 let finalDiv = document.createElement("div");
                 finalDiv.innerHTML = `
         <div style="display: grid; align-content: center; justify-content: center;
@@ -228,7 +245,7 @@
         </div>`;
                 table.replaceWith(finalDiv);
 
-                if (ads === true) {
+                if (ads === true && stampContent) {
                     stampContent.outerHTML = stampContent.innerHTML;
                 }
             })
@@ -236,6 +253,7 @@
                 console.error("Request Failed: ", error);
             });
     }
+
     let owner = appInsightsUserName;
     let defaultURL = 'https://www.neopets.com/stamps.phtml?type=album&page_id=0&owner=';
     let ownerURL = 'https://www.neopets.com/stamps.phtml?owner=' + owner;
