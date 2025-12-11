@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: Browse More Trade Lots
 // @author       rawbeee
-// @version      1.0.1
+// @version      1.0.2
 // @description  Adds pagination to the Trading Post search results
 // @match        *://www.neopets.com/island/tradingpost.phtml*
 // @run-at       document-start
@@ -14,15 +14,53 @@
     const PAGE_SIZE = 20;
 
     let currentOffset = 0;
-    let hasMore = true;
     let lastTotalCount = null;
     let lastSearchKey = null;
     let paginationEnabled = true;
+    let suppressNextKeyResetOnce = false;
 
     let pagerContainer = null;
     let prevBtn = null;
     let nextBtn = null;
     let pageSpan = null;
+
+    function parseBrowseParamsFromUrl() {
+        let paramsStr = '';
+        const hash = window.location.hash || '';
+
+        if (hash.includes('?')) {
+            paramsStr = hash.split('?')[1].split('#')[0];
+        } else {
+            const search = window.location.search || '';
+            if (search.startsWith('?')) paramsStr = search.slice(1);
+        }
+
+        if (!paramsStr) return null;
+
+        const sp = new URLSearchParams(paramsStr);
+        const type = sp.get('type') || '';
+        if (type !== 'browse') return null;
+
+        return {
+            type,
+            criteria: sp.get('criteria') || '',
+            search_string: sp.get('search_string') || '',
+            sort: sp.get('sort') || ''
+        };
+    }
+
+    function applyInitialSearchUIFromUrl() {
+        const params = parseBrowseParamsFromUrl();
+        if (!params) return;
+
+        const input = document.querySelector('.tp-main-content input[placeholder="Search"]');
+        if (input && !input.value && params.search_string) {
+            input.value = params.search_string;
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+            suppressNextKeyResetOnce = true;
+        }
+    }
 
     const nativeFetch = window.fetch;
     window.fetch = function (input, init) {
@@ -49,9 +87,12 @@
                     });
 
                     if (lastSearchKey !== null && key !== lastSearchKey) {
-                        currentOffset = 0;
-                        hasMore = true;
-                        lastTotalCount = null;
+                        if (suppressNextKeyResetOnce) {
+                            suppressNextKeyResetOnce = false;
+                        } else {
+                            currentOffset = 0;
+                            lastTotalCount = null;
+                        }
                     }
                     lastSearchKey = key;
 
@@ -76,13 +117,8 @@
             p.then(res => {
                 try {
                     res.clone().json().then(data => {
-                        if (data) {
-                            if (typeof data.has_more !== 'undefined') {
-                                hasMore = !!data.has_more;
-                            }
-                            if (typeof data.totalCount !== 'undefined') {
-                                lastTotalCount = data.totalCount;
-                            }
+                        if (data && typeof data.totalCount !== 'undefined') {
+                            lastTotalCount = data.totalCount;
                             setTimeout(() => {
                                 addPagerBelowOrder();
                                 updateButtons();
@@ -102,6 +138,7 @@
             imgBtn.click();
             return;
         }
+
         const input = document.querySelector('.tp-main-content input[placeholder="Search"]');
         if (input) {
             input.dispatchEvent(new KeyboardEvent('keydown', {
@@ -131,12 +168,10 @@
         }
 
         if (nextBtn) {
-            // Disable only if the last loaded page was empty
-            const disable = lastTotalCount === 0;
-
-            nextBtn.disabled = disable;
-            nextBtn.style.opacity = disable ? '0.5' : '1';
-            nextBtn.style.cursor = disable ? 'default' : 'pointer';
+            const disabled = lastTotalCount === 0;
+            nextBtn.disabled = disabled;
+            nextBtn.style.opacity = disabled ? '0.5' : '1';
+            nextBtn.style.cursor = disabled ? 'default' : 'pointer';
         }
     }
 
@@ -162,7 +197,6 @@
         const wrap = document.createElement('div');
         wrap.id = 'tp-offset-pager';
         wrap.style.display = 'flex';
-        wrap.style.minHeight = '48px';
         wrap.style.justifyContent = 'center';
         wrap.style.alignItems = 'center';
         wrap.style.gap = '8px';
@@ -194,10 +228,8 @@
         pageSpan = document.createElement('span');
         pageSpan.className = 'tp-offset-page';
         pageSpan.textContent = 'Page 1';
-        pageSpan.style.minWidth = '48px';
         pageSpan.style.fontWeight = 'bold';
         pageSpan.style.color = '#000';
-        pageSpan.style.textAlign = 'center';
 
         prevBtn.onclick = e => {
             e.stopPropagation();
@@ -222,13 +254,15 @@
         updateButtons();
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            addPagerBelowOrder();
-            updateButtons();
-        });
-    } else {
+    function init() {
+        applyInitialSearchUIFromUrl();
         addPagerBelowOrder();
         updateButtons();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
 })();
