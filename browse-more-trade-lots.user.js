@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: Browse More Trade Lots
 // @author       rawbeee
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds pagination to the Trading Post search results
 // @match        *://www.neopets.com/island/tradingpost.phtml*
 // @run-at       document-start
@@ -15,6 +15,7 @@
 
     let currentOffset = 0;
     let hasMore = true;
+    let lastTotalCount = null;
     let lastSearchKey = null;
     let paginationEnabled = true;
 
@@ -50,6 +51,7 @@
                     if (lastSearchKey !== null && key !== lastSearchKey) {
                         currentOffset = 0;
                         hasMore = true;
+                        lastTotalCount = null;
                     }
                     lastSearchKey = key;
 
@@ -74,8 +76,13 @@
             p.then(res => {
                 try {
                     res.clone().json().then(data => {
-                        if (data && typeof data.has_more !== 'undefined') {
-                            hasMore = !!data.has_more;
+                        if (data) {
+                            if (typeof data.has_more !== 'undefined') {
+                                hasMore = !!data.has_more;
+                            }
+                            if (typeof data.totalCount !== 'undefined') {
+                                lastTotalCount = data.totalCount;
+                            }
                             setTimeout(() => {
                                 addPagerBelowOrder();
                                 updateButtons();
@@ -124,10 +131,12 @@
         }
 
         if (nextBtn) {
-            const disabled = !hasMore;
-            nextBtn.disabled = disabled;
-            nextBtn.style.opacity = disabled ? '0.5' : '1';
-            nextBtn.style.cursor = disabled ? 'default' : 'pointer';
+            // Disable only if the last loaded page was empty
+            const disable = lastTotalCount === 0;
+
+            nextBtn.disabled = disable;
+            nextBtn.style.opacity = disable ? '0.5' : '1';
+            nextBtn.style.cursor = disable ? 'default' : 'pointer';
         }
     }
 
@@ -153,6 +162,7 @@
         const wrap = document.createElement('div');
         wrap.id = 'tp-offset-pager';
         wrap.style.display = 'flex';
+        wrap.style.minHeight = '48px';
         wrap.style.justifyContent = 'center';
         wrap.style.alignItems = 'center';
         wrap.style.gap = '8px';
@@ -184,8 +194,10 @@
         pageSpan = document.createElement('span');
         pageSpan.className = 'tp-offset-page';
         pageSpan.textContent = 'Page 1';
+        pageSpan.style.minWidth = '48px';
         pageSpan.style.fontWeight = 'bold';
         pageSpan.style.color = '#000';
+        pageSpan.style.textAlign = 'center';
 
         prevBtn.onclick = e => {
             e.stopPropagation();
@@ -197,7 +209,7 @@
 
         nextBtn.onclick = e => {
             e.stopPropagation();
-            if (!paginationEnabled || !hasMore) return;
+            if (!paginationEnabled || lastTotalCount === 0) return;
             currentOffset += PAGE_SIZE;
             triggerSearch();
             updateButtons();
