@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Neopets: Album Overview
 // @author       rawbeee
-// @version      1.0.3
+// @version      1.0.4
 // @description  Revamps the Overview page
 // @match        *://www.neopets.com/stamps.phtml?type=progress
 // @icon         https://images.neopets.com/themes/h5/altadorcup/images/settings-icon.png
@@ -24,6 +24,18 @@
 
 (function () {
     'use strict';
+
+    const PLACEHOLDER_AVATAR = "https://images.neopets.com/neoboards/boardIcons/avatars.png";
+    const DISPLAY_MODE_KEY = "neopets_album_overview_display_mode";
+
+    function getDisplayMode() {
+        let mode = localStorage.getItem(DISPLAY_MODE_KEY);
+        return (mode === 'percent') ? 'percent' : 'number';
+    }
+
+    function setDisplayMode(mode) {
+        localStorage.setItem(DISPLAY_MODE_KEY, mode);
+    }
 
     function extractStampData() {
         const robotoFont = document.createElement('style');
@@ -72,6 +84,9 @@
 
                 let allStampDivs = '';
                 let trueTotal = 0;
+                let avatarsPossible = 0;
+                let avatarsEarned = 0;
+
                 for (let key in stampData) {
                     let album = stampData[key].album;
                     let collected = stampData[key].stamps;
@@ -83,7 +98,7 @@
                         );
                         albumDetails[key] = {
                             album: album,
-                            avatar: "https://images.neopets.com/neoboards/boardIcons/avatars.png",
+                            avatar: PLACEHOLDER_AVATAR,
                             total: 0
                         };
                     }
@@ -92,11 +107,23 @@
                     let total = albumDetails[key].total;
                     trueTotal += total;
 
-                    let text = `${collected}/${total}`;
+                    let hasAvatar = (avatar !== PLACEHOLDER_AVATAR);
+                    let isComplete = (total > 0 && collected >= total);
+
+                    if (hasAvatar) {
+                        avatarsPossible++;
+                        if (isComplete) {
+                            avatarsEarned++;
+                        }
+                    }
+
+                    let countText = `${collected}/${total}`;
+                    let true_pct = Math.floor((collected / total) * 100) || 0;
+                    let pctText = `${true_pct}%`;
+
                     let bgColor = 'url(\'https://images.neopets.com/quests/images/bg-stars-pattern.png\'), linear-gradient(#B7B7B7 0%, #e5e5e5 50%, #b7b7b7 100%)';
                     let filter = 'grayscale(1)';
                     let missing = Math.floor((total / 25) * 100) || 0;
-                    let true_pct = Math.floor((collected / total) * 100) || 0;
                     let barColor = '';
                     let glowColor = '';
                     let borderColor = '#929292';
@@ -130,7 +157,8 @@
                             barColor = 'transparent';
                             glowColor = '#FFBF00';
                             filter = 'none';
-                            text = 'Complete!';
+                            countText = 'Complete!';
+                            pctText = 'Complete!';
                             bgColor = 'url(\'https://images.neopets.com/quests/images/bg-stars-pattern.png\'), linear-gradient(rgb(255, 165, 0) 0%, rgb(255, 242, 133) 50%, rgb(255, 165, 0) 100%)';
                             borderColor = '#CC8400';
                             barBorderColor = 'transparent';
@@ -175,8 +203,8 @@
           <div style="margin-left: ${missing}px; height: 100%; width: 100%; background: #A4A4A4;"></div>
         </div>
 
-        <div class="roboto-text" style="display: block; color: black; width: 100px; margin-top: -25px; font-size: 12pt;">
-          ${text}
+        <div class="roboto-text album-progress-text" data-count-text="${countText}" data-pct-text="${pctText}" style="display: block; color: black; width: 100px; margin-top: -25px; font-size: 12pt;">
+          ${countText}
         </div>
       </div>
     </div>
@@ -192,6 +220,11 @@
                     medtext[0].remove();
                 }
 
+                let overviewHeading = [...document.querySelectorAll('p')].filter(p => p.textContent.trim() === 'Overview of Collection');
+                if (overviewHeading[0]) {
+                    overviewHeading[0].remove();
+                }
+
                 let ads = false;
                 let stampContent;
                 let adDiv = document.querySelector('div[style*="position: relative; float: right; width: 160px; height: 630px;"]');
@@ -202,6 +235,7 @@
                 }
 
                 let total_pct = Math.floor((grandTotal / trueTotal) * 100) || 0;
+                let avatar_pct = Math.floor((avatarsEarned / avatarsPossible) * 100) || 0;
                 let borderColor = '#929292';
                 let barColor = '#FFFFFF';
                 if (total_pct <= 19) {
@@ -224,8 +258,20 @@
                     borderColor = '#CC8400';
                 }
 
+                let overallCountText = `${grandTotal} / ${trueTotal}`;
+                let overallPctText = `${total_pct}%`;
+                let avatarCountText = `${avatarsEarned} / ${avatarsPossible}`;
+                let avatarPctText = `${avatar_pct}% of`;
+
                 let finalDiv = document.createElement("div");
                 finalDiv.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 628px; margin: 0 auto 8px auto;">
+          <div class="roboto-text" style="font-size: 14pt; font-weight: bold;">Overview of Collection</div>
+          <div class="roboto-text" id="display-mode-switch" style="display: inline-flex; border: 3px solid #929292; border-radius: 15px; overflow: hidden; cursor: pointer; user-select: none; font-size: 11pt;">
+            <div id="mode-option-number" style="padding: 4px 14px;">#</div>
+            <div id="mode-option-percent" style="padding: 4px 14px;">%</div>
+          </div>
+        </div>
         <div style="display: grid; align-content: center; justify-content: center;
                 height: 50px; width: 100%; margin-top: -15px;">
                 <div class="border robot-text" style="border: 3px solid ${borderColor}; border-radius: 25px;
@@ -233,12 +279,15 @@
                   width: 628px; margin: auto auto; text-align: center;">
                     <div style="height: 25px; width: ${total_pct}%; background: ${barColor};">
                     </div>
-                  <div style="display: block; color: black; width: 100%; margin-top: -25px;
+                  <div class="roboto-text overall-progress-text" data-count-text="${overallCountText}" data-pct-text="${overallPctText}" style="display: block; color: black; width: 100%; margin-top: -25px;
                     font-size: 14pt;">
-                      <b>${grandTotal} / ${trueTotal}</b>
+                      <b>${overallCountText}</b>
                   </div>
                 </div>
               </div>
+        </div>
+        <div class="roboto-text avatar-progress-text" data-count-text="${avatarCountText}" data-pct-text="${avatarPctText}" style="text-align: center; width: 628px; margin: 0 auto 0 auto; font-size: 12pt;">
+          You have earned ${avatarCountText} stamp avatars.
         </div>
         <div id="stamps" style="display: grid; gap: 25px 40px; grid-template-columns: 125px 125px 125px 125px; justify-content: center; justify-items: center; margin: 13px auto;">
         ${allStampDivs}
@@ -248,6 +297,59 @@
                 if (ads === true && stampContent) {
                     stampContent.outerHTML = stampContent.innerHTML;
                 }
+
+                function applyDisplayMode(mode) {
+                    let useCount = (mode === 'number');
+
+                    document.querySelectorAll('.album-progress-text').forEach(el => {
+                        el.textContent = useCount ? el.dataset.countText : el.dataset.pctText;
+                    });
+
+                    let overallEl = document.querySelector('.overall-progress-text');
+                    if (overallEl) {
+                        overallEl.innerHTML = `<b>${useCount ? overallEl.dataset.countText : overallEl.dataset.pctText}</b>`;
+                    }
+
+                    let avatarEl = document.querySelector('.avatar-progress-text');
+                    if (avatarEl) {
+                        let value = useCount ? avatarEl.dataset.countText : avatarEl.dataset.pctText;
+                        avatarEl.textContent = `You have earned ${value} stamp avatars.`;
+                    }
+
+                    let numberOption = document.getElementById('mode-option-number');
+                    let percentOption = document.getElementById('mode-option-percent');
+                    if (numberOption && percentOption) {
+                        if (useCount) {
+                            numberOption.style.background = '#009e25';
+                            numberOption.style.color = '#fefefe';
+                            percentOption.style.background = 'transparent';
+                            percentOption.style.color = 'inherit';
+                        } else {
+                            percentOption.style.background = '#009e25';
+                            percentOption.style.color = '#fefefe';
+                            numberOption.style.background = 'transparent';
+                            numberOption.style.color = 'inherit';
+                        }
+                    }
+                }
+
+                let numberOption = document.getElementById('mode-option-number');
+                let percentOption = document.getElementById('mode-option-percent');
+
+                if (numberOption) {
+                    numberOption.addEventListener('click', () => {
+                        setDisplayMode('number');
+                        applyDisplayMode('number');
+                    });
+                }
+                if (percentOption) {
+                    percentOption.addEventListener('click', () => {
+                        setDisplayMode('percent');
+                        applyDisplayMode('percent');
+                    });
+                }
+
+                applyDisplayMode(getDisplayMode());
             })
             .catch(error => {
                 console.error("Request Failed: ", error);
